@@ -1,9 +1,3 @@
-diff --git a/scripts/generate_manifest.py b/scripts/generate_manifest.py
-new file mode 100644
-index 0000000000000000000000000000000000000000..0d5b6c7793d1d13eb84a0d4ff94d1d38a0e9ec03
---- /dev/null
-+++ b/scripts/generate_manifest.py
-@@ -0,0 +1,159 @@
 +#!/usr/bin/env python3
 +"""
 +Generate a manifest.json file for the curriculum site by parsing HTML source files.
