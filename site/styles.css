@@ -1,9 +1,3 @@
-diff --git a/site/styles.css b/site/styles.css
-new file mode 100644
-index 0000000000000000000000000000000000000000..33813cee2f13d7c9673e2dafa508b50a05079c77
---- /dev/null
-+++ b/site/styles.css
-@@ -0,0 +1,277 @@
 +:root {
 +  --bg: #080c17;
 +  --panel: #10182b;
