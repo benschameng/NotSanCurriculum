@@ -1,0 +1,52 @@
+diff --git a/site/index.html b/site/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..a9707665823fc801e27f8cbd1a6fb80982364b57
+--- /dev/null
++++ b/site/index.html
+@@ -0,0 +1,46 @@
++<!DOCTYPE html>
++<html lang="de">
++<head>
++  <meta charset="UTF-8" />
++  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
++  <title>NotSan Curriculum Navigator</title>
++  <link rel="stylesheet" href="styles.css" />
++</head>
++<body>
++  <header>
++    <div>
++      <p class="meta">Letzte Aktualisierung: <span id="generatedAt">–</span></p>
++      <h1>NotSan Curriculum Navigator</h1>
++      <p class="subtitle">Alles zu Lernfeldern, Lernsituationen und Praxisaufträgen – kompakt für den Rettungsdienst</p>
++    </div>
++  </header>
++
++  <main>
++    <aside>
++      <input type="search" id="search" placeholder="Suche nach Lernsituationen" />
++      <ul id="lernfeldList"></ul>
++    </aside>
++    <section id="content">
++      <div id="welcome">
++        <h2>Wähle ein Lernfeld</h2>
++        <p>Klicke links auf ein Lernfeld und anschließend auf eine Lernsituation, um Ziele, Inhalte, Stundenverteilung, Prüfungsform, Quellen und Bezüge einzusehen.</p>
++      </div>
++    </section>
++  </main>
++
++  <template id="lf-template">
++    <li class="lf">
++      <button class="lf-title" aria-expanded="false"></button>
++      <ul class="ls-list"></ul>
++    </li>
++  </template>
++
++  <template id="ls-template">
++    <li class="ls">
++      <button class="ls-title"></button>
++    </li>
++  </template>
++
++  <script src="app.js"></script>
++</body>
++</html>
