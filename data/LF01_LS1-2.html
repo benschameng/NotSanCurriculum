@@ -1,0 +1,1271 @@
++<!DOCTYPE html>
++<html lang="de">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <title>LS 1.2 - Berufsbild im Gesundheitswesen einordnen | NotSan Curriculum ULTIMATE</title>
++    <style>
++        @media print {
++            @page { margin: 2cm; size: A4; }
++            .no-print { display: none; }
++            body { background: white; }
++        }
++        
++        * { margin: 0; padding: 0; box-sizing: border-box; }
++        
++        body {
++            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
++            line-height: 1.8;
++            color: #2c3e50;
++            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
++            padding: 20px;
++        }
++        
++        .container {
++            max-width: 1400px;
++            margin: 0 auto;
++            background: white;
++            border-radius: 20px;
++            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
++            overflow: hidden;
++        }
++        
++        .header {
++            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
++            color: white;
++            padding: 50px;
++            position: relative;
++            overflow: hidden;
++        }
++        
++        .header::before {
++            content: '🏥';
++            position: absolute;
++            top: -20px;
++            right: 50px;
++            font-size: 200px;
++            opacity: 0.1;
++            transform: rotate(-15deg);
++        }
++        
++        .header-content {
++            position: relative;
++            z-index: 2;
++        }
++        
++        .ls-number {
++            font-size: 1.2em;
++            opacity: 0.9;
++            margin-bottom: 10px;
++            letter-spacing: 2px;
++        }
++        
++        .header h1 {
++            font-size: 3em;
++            margin-bottom: 20px;
++            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
++            line-height: 1.3;
++        }
++        
++        .meta-info {
++            display: grid;
++            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
++            gap: 20px;
++            margin-top: 30px;
++        }
++        
++        .meta-item {
++            background: rgba(255,255,255,0.2);
++            padding: 20px;
++            border-radius: 12px;
++            backdrop-filter: blur(10px);
++            text-align: center;
++        }
++        
++        .meta-label {
++            font-size: 0.9em;
++            opacity: 0.9;
++            margin-bottom: 8px;
++        }
++        
++        .meta-value {
++            font-size: 1.8em;
++            font-weight: bold;
++        }
++        
++        .aprv-mapping {
++            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
++            color: white;
++            padding: 35px;
++            margin: 40px 50px;
++            border-radius: 15px;
++            box-shadow: 0 10px 30px rgba(142, 68, 173, 0.3);
++            position: relative;
++            overflow: hidden;
++        }
++        
++        .aprv-mapping::before {
++            content: '📋';
++            position: absolute;
++            top: 15px;
++            right: 25px;
++            font-size: 80px;
++            opacity: 0.15;
++        }
++        
++        .aprv-mapping h3 {
++            font-size: 1.8em;
++            margin-bottom: 20px;
++            display: flex;
++            align-items: center;
++            gap: 12px;
++        }
++        
++        .aprv-grid {
++            display: grid;
++            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
++            gap: 15px;
++            margin-top: 20px;
++        }
++        
++        .aprv-item {
++            background: rgba(255,255,255,0.15);
++            padding: 20px;
++            border-radius: 10px;
++            backdrop-filter: blur(10px);
++            border-left: 4px solid rgba(255,255,255,0.5);
++            transition: all 0.3s ease;
++        }
++        
++        .aprv-item:hover {
++            background: rgba(255,255,255,0.25);
++            transform: translateX(5px);
++        }
++        
++        .aprv-item-header {
++            display: flex;
++            justify-content: space-between;
++            align-items: center;
++            margin-bottom: 10px;
++        }
++        
++        .aprv-number {
++            font-size: 1.1em;
++            font-weight: bold;
++            opacity: 0.9;
++        }
++        
++        .aprv-hours {
++            background: rgba(255,255,255,0.3);
++            padding: 5px 12px;
++            border-radius: 20px;
++            font-weight: bold;
++            font-size: 1.1em;
++        }
++        
++        .aprv-title {
++            font-size: 1.1em;
++            line-height: 1.4;
++            font-weight: 500;
++        }
++        
++        .aprv-total {
++            background: rgba(255,255,255,0.25);
++            padding: 20px;
++            border-radius: 10px;
++            margin-top: 20px;
++            text-align: center;
++            font-size: 1.3em;
++            font-weight: bold;
++            border: 2px solid rgba(255,255,255,0.4);
++        }
++        
++        .content {
++            padding: 60px;
++        }
++        
++        .section {
++            margin-bottom: 60px;
++            border-left: 5px solid #3498db;
++            padding-left: 30px;
++            position: relative;
++        }
++        
++        .section::before {
++            content: '';
++            position: absolute;
++            left: -5px;
++            top: 0;
++            width: 5px;
++            height: 60px;
++            background: #2ecc71;
++        }
++        
++        .section h2 {
++            color: #3498db;
++            font-size: 2.2em;
++            margin-bottom: 25px;
++            padding-bottom: 15px;
++            border-bottom: 3px solid #ecf0f1;
++            display: flex;
++            align-items: center;
++            gap: 15px;
++        }
++        
++        .section h3 {
++            color: #2c3e50;
++            font-size: 1.6em;
++            margin: 30px 0 15px 0;
++            display: flex;
++            align-items: center;
++            gap: 10px;
++        }
++        
++        .case-study {
++            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
++            color: white;
++            padding: 40px;
++            border-radius: 15px;
++            margin: 30px 0;
++            position: relative;
++            overflow: hidden;
++            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
++        }
++        
++        .case-study::before {
++            content: '🏥';
++            position: absolute;
++            top: 20px;
++            right: 30px;
++            font-size: 120px;
++            opacity: 0.15;
++        }
++        
++        .case-study h3 {
++            color: white;
++            font-size: 2em;
++            margin-bottom: 25px;
++        }
++        
++        .case-content {
++            position: relative;
++            z-index: 2;
++        }
++        
++        .case-box {
++            background: rgba(255,255,255,0.15);
++            padding: 20px;
++            border-radius: 10px;
++            margin: 15px 0;
++            backdrop-filter: blur(5px);
++            border-left: 4px solid rgba(255,255,255,0.5);
++        }
++        
++        .case-box h4 {
++            font-size: 1.3em;
++            margin-bottom: 12px;
++            display: flex;
++            align-items: center;
++            gap: 10px;
++        }
++        
++        .competency-grid {
++            display: grid;
++            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
++            gap: 25px;
++            margin: 30px 0;
++        }
++        
++        .competency-card {
++            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
++            color: white;
++            padding: 30px;
++            border-radius: 15px;
++            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.3);
++            transition: transform 0.3s ease;
++        }
++        
++        .competency-card:hover {
++            transform: translateY(-5px);
++        }
++        
++        .competency-card h4 {
++            font-size: 1.5em;
++            margin-bottom: 20px;
++            display: flex;
++            align-items: center;
++            gap: 12px;
++            border-bottom: 2px solid rgba(255,255,255,0.3);
++            padding-bottom: 12px;
++        }
++        
++        .competency-card ul {
++            list-style: none;
++            padding: 0;
++        }
++        
++        .competency-card li {
++            padding: 12px 0;
++            padding-left: 30px;
++            position: relative;
++            border-bottom: 1px solid rgba(255,255,255,0.2);
++        }
++        
++        .competency-card li:last-child {
++            border-bottom: none;
++        }
++        
++        .competency-card li::before {
++            content: '✓';
++            position: absolute;
++            left: 0;
++            font-weight: bold;
++            font-size: 1.2em;
++        }
++        
++        .topics-section {
++            background: #f8f9fa;
++            padding: 40px;
++            border-radius: 15px;
++            margin: 30px 0;
++        }
++        
++        .topic-item {
++            background: white;
++            border: 2px solid #e9ecef;
++            border-radius: 12px;
++            padding: 25px;
++            margin: 20px 0;
++            transition: all 0.3s ease;
++            position: relative;
++            overflow: hidden;
++        }
++        
++        .topic-item:hover {
++            border-color: #3498db;
++            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.2);
++            transform: translateX(5px);
++        }
++        
++        .topic-item::before {
++            content: '';
++            position: absolute;
++            left: 0;
++            top: 0;
++            width: 6px;
++            height: 100%;
++            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
++            transform: scaleY(0);
++            transition: transform 0.3s ease;
++        }
++        
++        .topic-item:hover::before {
++            transform: scaleY(1);
++        }
++        
++        .topic-header {
++            display: flex;
++            justify-content: space-between;
++            align-items: center;
++            margin-bottom: 15px;
++        }
++        
++        .topic-title {
++            font-size: 1.4em;
++            color: #2c3e50;
++            font-weight: 600;
++        }
++        
++        .topic-ue {
++            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
++            color: white;
++            padding: 8px 20px;
++            border-radius: 25px;
++            font-weight: bold;
++            font-size: 1.1em;
++        }
++        
++        .topic-content {
++            color: #555;
++            line-height: 1.8;
++        }
++        
++        .topic-details {
++            background: #f8f9fa;
++            padding: 15px;
++            border-radius: 8px;
++            margin-top: 15px;
++        }
++        
++        .topic-details ul {
++            margin-left: 20px;
++            margin-top: 10px;
++        }
++        
++        .topic-details li {
++            margin: 8px 0;
++            color: #444;
++        }
++        
++        .connection-box {
++            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
++            color: white;
++            padding: 20px;
++            border-radius: 10px;
++            margin-top: 15px;
++            border-left: 5px solid rgba(255,255,255,0.5);
++        }
++        
++        .connection-box strong {
++            font-size: 1.1em;
++            display: block;
++            margin-bottom: 8px;
++        }
++        
++        .methods-grid {
++            display: grid;
++            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
++            gap: 20px;
++            margin: 30px 0;
++        }
++        
++        .method-card {
++            background: white;
++            border: 2px solid #e9ecef;
++            border-radius: 12px;
++            padding: 25px;
++            text-align: center;
++            transition: all 0.3s ease;
++        }
++        
++        .method-card:hover {
++            border-color: #2ecc71;
++            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.2);
++            transform: translateY(-5px);
++        }
++        
++        .method-icon {
++            font-size: 3em;
++            margin-bottom: 15px;
++        }
++        
++        .method-card h4 {
++            color: #2c3e50;
++            font-size: 1.3em;
++            margin-bottom: 10px;
++        }
++        
++        .praxis-assignment {
++            background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
++            color: white;
++            padding: 40px;
++            border-radius: 15px;
++            margin: 30px 0;
++            position: relative;
++            box-shadow: 0 10px 30px rgba(214, 48, 49, 0.3);
++        }
++        
++        .praxis-assignment::before {
++            content: '🏥';
++            position: absolute;
++            top: 20px;
++            right: 30px;
++            font-size: 100px;
++            opacity: 0.15;
++        }
++        
++        .praxis-assignment h3 {
++            color: white;
++            font-size: 2em;
++            margin-bottom: 25px;
++        }
++        
++        .praxis-content {
++            position: relative;
++            z-index: 2;
++        }
++        
++        .praxis-task {
++            background: rgba(255,255,255,0.15);
++            padding: 20px;
++            border-radius: 10px;
++            margin: 15px 0;
++            backdrop-filter: blur(5px);
++        }
++        
++        .praxis-task h4 {
++            font-size: 1.3em;
++            margin-bottom: 12px;
++        }
++        
++        .performance-grid {
++            display: grid;
++            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
++            gap: 20px;
++            margin: 30px 0;
++        }
++        
++        .performance-item {
++            background: white;
++            border: 2px solid #e9ecef;
++            border-left: 5px solid #17a2b8;
++            padding: 25px;
++            border-radius: 10px;
++            transition: all 0.3s ease;
++        }
++        
++        .performance-item:hover {
++            box-shadow: 0 8px 25px rgba(23, 162, 184, 0.2);
++            transform: translateY(-3px);
++        }
++        
++        .performance-item h4 {
++            color: #17a2b8;
++            font-size: 1.4em;
++            margin-bottom: 15px;
++            display: flex;
++            align-items: center;
++            gap: 10px;
++        }
++        
++        .literature-list {
++            background: #f8f9fa;
++            padding: 30px;
++            border-radius: 12px;
++            margin: 20px 0;
++        }
++        
++        .literature-list ul {
++            list-style: none;
++            padding: 0;
++        }
++        
++        .literature-list li {
++            padding: 15px;
++            margin: 10px 0;
++            background: white;
++            border-radius: 8px;
++            border-left: 4px solid #3498db;
++            transition: all 0.3s ease;
++        }
++        
++        .literature-list li:hover {
++            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
++            transform: translateX(5px);
++        }
++        
++        .highlight {
++            background: linear-gradient(120deg, #ffd700 0%, #ffed4e 100%);
++            padding: 3px 8px;
++            border-radius: 4px;
++            color: #333;
++            font-weight: bold;
++        }
++        
++        .info-box {
++            background: #e8f4f8;
++            border-left: 5px solid #3498db;
++            padding: 20px;
++            border-radius: 8px;
++            margin: 20px 0;
++        }
++        
++        .success-box {
++            background: #e8f8f5;
++            border-left: 5px solid #2ecc71;
++            padding: 20px;
++            border-radius: 8px;
++            margin: 20px 0;
++        }
++        
++        .warning-box {
++            background: #fef5e7;
++            border-left: 5px solid #f39c12;
++            padding: 20px;
++            border-radius: 8px;
++            margin: 20px 0;
++        }
++        
++        .footer {
++            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
++            color: white;
++            padding: 40px;
++            text-align: center;
++        }
++        
++        .footer p {
++            opacity: 0.9;
++            line-height: 1.8;
++        }
++        
++        @media (max-width: 768px) {
++            .header h1 { font-size: 2em; }
++            .content { padding: 30px 20px; }
++            .competency-grid { grid-template-columns: 1fr; }
++            .topics-section { padding: 20px; }
++            .aprv-grid { grid-template-columns: 1fr; }
++        }
++    </style>
++</head>
++<body>
++    <div class="container">
++        <!-- HEADER -->
++        <header class="header">
++            <div class="header-content">
++                <div class="ls-number">LERNSITUATION 1.2 | LERNFELD 1: BERUF UND PERSON</div>
++                <h1>Berufsbild im Gesundheitswesen einordnen und über rechtliche Rahmenbedingungen informieren</h1>
++                
++                <div class="meta-info">
++                    <div class="meta-item">
++                        <div class="meta-label">Unterrichtseinheiten</div>
++                        <div class="meta-value">40 UE</div>
++                    </div>
++                    <div class="meta-item">
++                        <div class="meta-label">Lernfeld</div>
++                        <div class="meta-value">LF 1</div>
++                    </div>
++                    <div class="meta-item">
++                        <div class="meta-label">Ausbildungsjahr</div>
++                        <div class="meta-value">1. Jahr</div>
++                    </div>
++                    <div class="meta-item">
++                        <div class="meta-label">BPR/SAA</div>
++                        <div class="meta-value">-</div>
++                    </div>
++                </div>
++            </div>
++        </header>
++
++        <!-- NotSan-APrV ZUORDNUNG -->
++        <div class="aprv-mapping">
++            <h3>📋 Zuordnung zu den Themenbereichen der NotSan-APrV (Anlage 1)</h3>
++            <p style="opacity: 0.95; margin-bottom: 20px; font-size: 1.05em;">
++                Diese Lernsituation deckt folgende Themenbereiche der Ausbildungs- und Prüfungsverordnung für Notfallsanitäterinnen und Notfallsanitäter ab:
++            </p>
++            
++            <div class="aprv-grid">
++                <div class="aprv-item">
++                    <div class="aprv-item-header">
++                        <span class="aprv-number">Themenbereich 3</span>
++                        <span class="aprv-hours">15 Std</span>
++                    </div>
++                    <div class="aprv-title">
++                        Berufsbezogene Rechts- und Berufskunde:<br>
++                        Rettungsdienstrecht, Landesgesetze, Trägerstrukturen, Finanzierung
++                    </div>
++                </div>
++                
++                <div class="aprv-item">
++                    <div class="aprv-item-header">
++                        <span class="aprv-number">Themenbereich 4</span>
++                        <span class="aprv-hours">10 Std</span>
++                    </div>
++                    <div class="aprv-title">
++                        Einsatztaktik und -methodik:<br>
++                        Organisation des Rettungsdienstes, Leitstellen, Dispositionssysteme
++                    </div>
++                </div>
++                
++                <div class="aprv-item">
++                    <div class="aprv-item-header">
++                        <span class="aprv-number">Themenbereich 9</span>
++                        <span class="aprv-hours">15 Std</span>
++                    </div>
++                    <div class="aprv-title">
++                        Berufs-, Gesetzes- und Staatsbürgerkunde:<br>
++                        Gesundheitssystem, Sozialversicherung, arbeitsrechtliche Grundlagen
++                    </div>
++                </div>
++            </div>
++            
++            <div class="aprv-total">
++                <span style="opacity: 0.9;">Gesamt NotSan-APrV-Stunden in dieser LS:</span><br>
++                <span style="font-size: 1.4em;">40 Stunden</span>
++            </div>
++            
++            <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px; font-size: 0.95em;">
++                <strong>💡 Hinweis:</strong> Diese Lernsituation vermittelt ein tiefes Verständnis für die Einordnung des Notfallsanitäters im deutschen Gesundheitssystem und die Strukturen des Rettungsdienstes. Dieses Wissen ist Grundlage für professionelles Handeln und interdisziplinäre Zusammenarbeit.
++            </div>
++        </div>
++
++        <!-- MAIN CONTENT -->
++        <main class="content">
++            
++            <!-- FALLBEZUG -->
++            <section class="section">
++                <h2>🏥 Initialer Fallbezug</h2>
++                
++                <div class="case-study">
++                    <div class="case-content">
++                        <h3>Ein Tag in der Leitstelle - Das Gesundheitssystem verstehen</h3>
++                        
++                        <div class="case-box">
++                            <h4>📍 Szenario: Hospitationstag in der Integrierten Leitstelle</h4>
++                            <p>Im Rahmen Ihrer Ausbildung hospitieren Sie einen Tag in der Integrierten Leitstelle (ILS). Der Disponent erklärt Ihnen die verschiedenen Eingangskanäle:</p>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li><strong>112:</strong> Notruf - akute Notfälle</li>
++                                <li><strong>116117:</strong> Kassenärztlicher Bereitschaftsdienst - ärztliche Hilfe ohne Notfall</li>
++                                <li><strong>Krankenhaus:</strong> Verlegungsfahrten zwischen Kliniken</li>
++                                <li><strong>Pflegeheim:</strong> Routinetransporte zur Dialyse</li>
++                                <li><strong>Polizei/Feuerwehr:</strong> Anforderung bei besonderen Lagen</li>
++                            </ul>
++                        </div>
++
++                        <div class="case-box">
++                            <h4>🔍 Beobachtungen während der Schicht</h4>
++                            <p><strong>08:30 Uhr:</strong> Einsatz über 112 - "62-jähriger Patient mit Brustschmerzen"<br>
++                            → Disposition: NEF + RTW, Zielklinik: Herzkatheter-Zentrum</p>
++                            
++                            <p><strong>10:15 Uhr:</strong> Anruf über 116117 - "Kind mit Fieber seit gestern"<br>
++                            → Verweis an Kinderarzt-Bereitschaftsdienst, kein RTW erforderlich</p>
++                            
++                            <p><strong>12:00 Uhr:</strong> Anforderung durch Pflegeheim - "Dialyse-Transport"<br>
++                            → Disposition: KTW (kein RTW nötig)</p>
++                            
++                            <p><strong>14:30 Uhr:</strong> Sekundärtransport - "Verlegung Intensivpatient"<br>
++                            → Disposition: ITW mit spezieller Ausstattung</p>
++                        </div>
++
++                        <div class="case-box">
++                            <h4>💭 Ihre Fragen und Beobachtungen</h4>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li>Warum gibt es verschiedene Notrufnummern (112 vs. 116117)?</li>
++                                <li>Wer entscheidet, welches Rettungsmittel (RTW, NEF, KTW, ITW) alarmiert wird?</li>
++                                <li>Wie wird festgelegt, in welches Krankenhaus der Patient kommt?</li>
++                                <li>Wer bezahlt die verschiedenen Einsätze?</li>
++                                <li>Welche Rolle spielen Hilfsorganisationen (DRK, ASB, etc.) und private Anbieter?</li>
++                                <li>Wie ist der Rettungsdienst organisiert? Wer ist verantwortlich?</li>
++                            </ul>
++                        </div>
++
++                        <div class="case-box">
++                            <h4>🎯 Lernziele aus dem Fall</h4>
++                            <p>Die Auszubildenden sollen:</p>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li>Die Struktur des deutschen Gesundheitssystems verstehen</li>
++                                <li>Schnittstellen zwischen Rettungsdienst und anderen Akteuren kennen</li>
++                                <li>Die Organisation des Rettungsdienstes (Träger, Leitstellen) erklären können</li>
++                                <li>Finanzierungsstrukturen und Kostenträger unterscheiden</li>
++                                <li>Ihre Rolle im interdisziplinären Team verstehen</li>
++                            </ul>
++                        </div>
++                    </div>
++                </div>
++            </section>
++
++            <!-- KOMPETENZZIELE -->
++            <section class="section">
++                <h2>🎯 Kompetenzziele nach Bloom's Taxonomie</h2>
++                
++                <div class="competency-grid">
++                    <div class="competency-card">
++                        <h4>🧠 Kognitive Kompetenz</h4>
++                        <ul>
++                            <li>Struktur des deutschen Gesundheitssystems erklären</li>
++                            <li>Historische Entwicklung des Rettungsdienstes nachvollziehen</li>
++                            <li>Trägerstrukturen (öffentlich-rechtlich, Hilfsorganisationen, privat) unterscheiden</li>
++                            <li>Aufgaben und Funktion von Rettungsleitstellen beschreiben</li>
++                            <li>Finanzierung des Rettungsdienstes verstehen</li>
++                            <li>Bundes- und Landesgesetze zum Rettungsdienst kennen</li>
++                            <li>Internationale Rettungsdienstsysteme vergleichen</li>
++                        </ul>
++                    </div>
++
++                    <div class="competency-card">
++                        <h4>🔧 Psychomotorische Kompetenz</h4>
++                        <ul>
++                            <li>Mit Dispositionssystemen umgehen</li>
++                            <li>Kommunikation mit der Leitstelle professionell gestalten</li>
++                            <li>Schnittstellen zu anderen Berufsgruppen koordinieren</li>
++                            <li>Abrechnungsrelevante Dokumentation durchführen</li>
++                            <li>Organisationsabläufe auf der Wache mitgestalten</li>
++                        </ul>
++                    </div>
++
++                    <div class="competency-card">
++                        <h4>❤️ Affektive Kompetenz</h4>
++                        <ul>
++                            <li>Wertschätzung für die Vielfalt im Gesundheitssystem entwickeln</li>
++                            <li>Respekt für andere Berufsgruppen zeigen</li>
++                            <li>Verantwortungsbewusstsein für das Gesamtsystem aufbauen</li>
++                            <li>Bereitschaft zur interdisziplinären Zusammenarbeit</li>
++                            <li>Kritisches Bewusstsein für Systemschwächen entwickeln</li>
++                        </ul>
++                    </div>
++
++                    <div class="competency-card">
++                        <h4>⚡ Handlungskompetenz</h4>
++                        <ul>
++                            <li>Sich im Gesundheitssystem orientieren und navigieren</li>
++                            <li>Mit verschiedenen Akteuren professionell kommunizieren</li>
++                            <li>Patienten kompetent über Versorgungswege informieren</li>
++                            <li>Ressourcen des Gesundheitssystems sinnvoll nutzen</li>
++                            <li>Eigene Rolle im interdisziplinären Team ausfüllen</li>
++                        </ul>
++                    </div>
++                </div>
++            </section>
++
++            <!-- DETAILLIERTE THEMEN -->
++            <section class="section">
++                <h2>📚 Detaillierte Themenaufstellung mit Stundenverteilung</h2>
++                
++                <div class="topics-section">
++                    
++                    <div class="topic-item">
++                        <div class="topic-header">
++                            <div class="topic-title">🏥 1. Das deutsche Gesundheitssystem - Struktur und Akteure</div>
++                            <div class="topic-ue">6 UE</div>
++                        </div>
++                        <div class="topic-content">
++                            <p><strong>Lerninhalt:</strong> Umfassendes Verständnis des deutschen Gesundheitssystems und seiner Besonderheiten.</p>
++                            
++                            <div class="topic-details">
++                                <strong>Konkrete Themen:</strong>
++                                <ul>
++                                    <li><strong>Die drei Säulen:</strong> Ambulante Versorgung, stationäre Versorgung, Rehabilitation</li>
++                                    <li><strong>Ambulanter Sektor:</strong> Hausärzte, Fachärzte, KV-System, Bereitschaftsdienst (116117)</li>
++                                    <li><strong>Stationärer Sektor:</strong> Krankenhäuser (Grund-, Regel-, Maximalversorgung), Notaufnahmen</li>
++                                    <li><strong>Notfallversorgung:</strong> Rettungsdienst als vierte Säule, präklinische vs. klinische Versorgung</li>
++                                    <li><strong>Finanzierung:</strong> Gesetzliche/private Krankenversicherung, Pflegeversicherung</li>
++                                    <li><strong>Selbstverwaltung:</strong> Kassenärztliche Vereinigungen, Krankenkassen, Politik</li>
++                                    <li><strong>Gesundheitsberufe:</strong> Ärzte, Pflegekräfte, Therapeuten, Notfallsanitäter - Zusammenarbeit</li>
++                                </ul>
++                            </div>
++
++                            <div class="connection-box">
++                                <strong>🔗 Praxisrelevanz:</strong> Als Notfallsanitäter sind Sie Schnittstelle zwischen präklinischer und klinischer Versorgung. Sie müssen wissen, wann ein Patient in die Notaufnahme gehört und wann der Hausarzt ausreicht. Die Kenntnis des Gesundheitssystems hilft Ihnen, Patienten kompetent zu beraten: "Rufen Sie bei solchen Beschwerden künftig die 116117 an - das spart Ihnen die Wartezeit in der Notaufnahme." Das Verständnis der Finanzierung erklärt, warum manche Einsätze vom Patienten selbst bezahlt werden müssen.
++                            </div>
++                        </div>
++                    </div>
++
++                    <div class="topic-item">
++                        <div class="topic-header">
++                            <div class="topic-title">📜 2. Historische Entwicklung und aktuelle Struktur des Rettungsdienstes</div>
++                            <div class="topic-ue">4 UE</div>
++                        </div>
++                        <div class="topic-content">
++                            <p><strong>Lerninhalt:</strong> Von den Anfängen bis zum modernen Rettungsdienst.</p>
++                            
++                            <div class="topic-details">
++                                <strong>Konkrete Themen:</strong>
++                                <ul>
++                                    <li><strong>Historische Meilensteine:</strong> Kriegs-Sanitätsdienst, Entstehung der Hilfsorganisationen</li>
++                                    <li><strong>1970er Jahre:</strong> Professionalisierung, erste Rettungsassistenten</li>
++                                    <li><strong>2014:</strong> Notfallsanitätergesetz - höchste nichtärztliche Qualifikation</li>
++                                    <li><strong>Aktuelle Entwicklungen:</strong> Telenotarzt, Community Paramedicine, Delegation ärztlicher Maßnahmen</li>
++                                    <li><strong>Rettungsdienstbereiche:</strong> Regionale Gliederung, Zuständigkeiten</li>
++                                    <li><strong>Rettungsmittel:</strong> RTW, NEF, NAW, KTW, ITW, Rettungshubschrauber</li>
++                                    <li><strong>Standards und Normen:</strong> DIN EN 1789, Hilfsfrist, Qualitätsindikatoren</li>
++                                </ul>
++                            </div>
++
++                            <div class="connection-box">
++                                <strong>🔗 Praxisrelevanz:</strong> Die Geschichte zeigt: Der Rettungsdienst entwickelt sich ständig weiter. Was heute Standard ist (z.B. präklinische Analgesie), war vor 30 Jahren undenkbar. Als Notfallsanitäter stehen Sie in einer langen Tradition von Menschen, die Leben retten. Gleichzeitig sind Sie Teil einer modernen, hochtechnisierten Versorgungsstruktur. Die Kenntnis der aktuellen Entwicklungen (Telenotarzt, erweiterte Kompetenzen) zeigt: Ihr Beruf wird sich weiterentwickeln - bleiben Sie offen für Neues!
++                            </div>
++                        </div>
++                    </div>
++
++                    <div class="topic-item">
++                        <div class="topic-header">
++                            <div class="topic-title">🏛️ 3. Trägerstrukturen und Organisationsformen</div>
++                            <div class="topic-ue">6 UE</div>
++                        </div>
++                        <div class="topic-content">
++                            <p><strong>Lerninhalt:</strong> Wer betreibt Rettungsdienst in Deutschland?</p>
++                            
++                            <div class="topic-details">
++                                <strong>Konkrete Themen:</strong>
++                                <ul>
++                                    <li><strong>Öffentlich-rechtliche Träger:</strong> Feuerwehr, kommunale Rettungsdienste, Zweckverbände</li>
++                                    <li><strong>Hilfsorganisationen:</strong> DRK, ASB, JUH, MHD - Geschichte, Struktur, Besonderheiten</li>
++                                    <li><strong>Private Anbieter:</strong> Malteser Hilfsdienst (privatrechtlich), kommerzielle Unternehmen</li>
++                                    <li><strong>Mischformen:</strong> Kooperationen, Ausschreibungen, Konzessionsvergabe</li>
++                                    <li><strong>Vor- und Nachteile:</strong> Ehrenamt vs. Hauptamt, öffentlich vs. privat</li>
++                                    <li><strong>Bundesländer-Unterschiede:</strong> Bayern (Feuerwehr dominiert) vs. NRW (Hilfsorganisationen)</li>
++                                    <li><strong>Qualitätssicherung:</strong> Aufsichtsbehörden, Kontrollen, Zertifizierungen</li>
++                                </ul>
++                            </div>
++
++                            <div class="connection-box">
++                                <strong>🔗 Praxisrelevanz:</strong> Ihr Arbeitgeber prägt Ihren Arbeitsalltag. Bei einer Hilfsorganisation erleben Sie möglicherweise eine stärkere Identifikation und Werteorientierung. Bei einem kommunalen Träger profitieren Sie von der Anbindung an die Feuerwehr. Private Anbieter können flexiblere Arbeitszeitmodelle bieten. Die Kenntnis der Trägerstrukturen hilft Ihnen bei Bewerbungen: Wo möchte ich arbeiten? Welche Kultur passt zu mir? Auch im Einsatz ist es wichtig zu wissen: Mit welchen anderen Trägern arbeite ich zusammen?
++                            </div>
++                        </div>
++                    </div>
++
++                    <div class="topic-item">
++                        <div class="topic-header">
++                            <div class="topic-title">📞 4. Rettungsleitstellen - Herzstück der Rettungskette</div>
++                            <div class="topic-ue">5 UE</div>
++                        </div>
++                        <div class="topic-content">
++                            <p><strong>Lerninhalt:</strong> Funktion und Bedeutung der Integrierten Leitstellen.</p>
++                            
++                            <div class="topic-details">
++                                <strong>Konkrete Themen:</strong>
++                                <ul>
++                                    <li><strong>Aufgaben:</strong> Notrufannahme, Disposition, Einsatzkoordination, Dokumentation</li>
++                                    <li><strong>Integrierte Leitstellen (ILS):</strong> Rettungsdienst + Feuerwehr gemeinsam</li>
++                                    <li><strong>Notrufabfrage:</strong> Strukturierte Abfrage, NACA-Score, Stichwort-System</li>
++                                    <li><strong>Dispositionskriterien:</strong> Welches Rettungsmittel? Welche Zielklinik?</li>
++                                    <li><strong>Technologie:</strong> Computer Aided Dispatch (CAD), Digitalfunk, GPS-Ortung</li>
++                                    <li><strong>Besondere Lagen:</strong> MANV, Großschadenslage, Katastrophe - Stab-Bildung</li>
++                                    <li><strong>Qualitätssicherung:</strong> Notrufaufzeichnung, Nachsorge, Fehleranalyse</li>
++                                </ul>
++                            </div>
++
++                            <div class="connection-box">
++                                <strong>🔗 Praxisrelevanz:</strong> Die Leitstelle ist Ihr wichtigster Partner im Einsatz. Eine gute Kommunikation mit der Leitstelle ist essentiell: Klare Statusmeldungen, präzise Nachalarmierungen, professionelle Rückmeldungen. Verstehen Sie die Herausforderungen der Disponenten - sie müssen in Sekunden entscheiden, welches Rettungsmittel zum Einsatz kommt. Wenn Sie wissen, nach welchen Kriterien disponiert wird, können Sie besser einschätzen, warum z.B. ein NEF nachgefordert wurde. Die Leitstelle ist nicht "der Feind", sondern Ihr Team!
++                            </div>
++                        </div>
++                    </div>
++
++                    <div class="topic-item">
++                        <div class="topic-header">
++                            <div class="topic-title">⚖️ 5. Rechtliche Grundlagen - Bundes- und Landesebene</div>
++                            <div class="topic-ue">5 UE</div>
++                        </div>
++                        <div class="topic-content">
++                            <p><strong>Lerninhalt:</strong> Gesetzliche Regelungen des Rettungsdienstes.</p>
++                            
++                            <div class="topic-details">
++                                <strong>Konkrete Themen:</strong>
++                                <ul>
++                                    <li><strong>Bundesebene:</strong> NotSanG (Berufsrecht), SGB V (Finanzierung), StGB/BGB (Haftung)</li>
++                                    <li><strong>Landesebene:</strong> Rettungsdienstgesetze der Länder (z.B. RDG M-V, BayRDG)</li>
++                                    <li><strong>Zuständigkeiten:</strong> Wer ist verantwortlich? Kommune, Landkreis, Land?</li>
++                                    <li><strong>Rettungsdienstplan:</strong> Bedarfsplanung, Standorte, Hilfsfrist</li>
++                                    <li><strong>Genehmigungen:</strong> Wer darf Rettungsdienst durchführen? Konzessionen</li>
++                                    <li><strong>Katastrophenschutz:</strong> Übergang von Rettungsdienst zu Katastrophenschutz</li>
++                                    <li><strong>Aufsichtsbehörden:</strong> Kontrolle, Sanktionen, Qualitätssicherung</li>
++                                </ul>
++                            </div>
++
++                            <div class="connection-box">
++                                <strong>🔗 Praxisrelevanz:</strong> Die rechtlichen Grundlagen definieren, unter welchen Rahmenbedingungen Sie arbeiten. Die Hilfsfrist (z.B. 10 Minuten bis 95% der Einsatzorte) erklärt, warum Standorte strategisch verteilt sind. Die Kenntnis der Landesgesetze ist wichtig, wenn Sie in einem anderen Bundesland arbeiten wollen - jedes Land regelt den Rettungsdienst etwas anders. Bei rechtlichen Fragen (z.B. Ärger mit dem Träger) wissen Sie, an welche Aufsichtsbehörde Sie sich wenden können.
++                            </div>
++                        </div>
++                    </div>
++
++                    <div class="topic-item">
++                        <div class="topic-header">
++                            <div class="topic-title">💰 6. Finanzierung des Rettungsdienstes</div>
++                            <div class="topic-ue">4 UE</div>
++                        </div>
++                        <div class="topic-content">
++                            <p><strong>Lerninhalt:</strong> Wer zahlt für den Rettungsdienst?</p>
++                            
++                            <div class="topic-details">
++                                <strong>Konkrete Themen:</strong>
++                                <ul>
++                                    <li><strong>Kostenträger:</strong> Gesetzliche/private Krankenversicherung, Unfallversicherung, Patient</li>
++                                    <li><strong>Gebührenordnung:</strong> Pauschalen vs. Einzelleistungen, Unterschiede zwischen Ländern</li>
++                                    <li><strong>Notfalleinsätze:</strong> Wann zahlt die Krankenkasse? Medizinische Notwendigkeit</li>
++                                    <li><strong>Krankentransporte:</strong> Verordnung durch Arzt, Genehmigung durch Krankenkasse</li>
++                                    <li><strong>Fehlalarme:</strong> Wer zahlt bei missbräuchlicher Inanspruchnahme?</li>
++                                    <li><strong>Vorhaltekosten:</strong> Land, Kommune - Finanzierung der Infrastruktur</li>
++                                    <li><strong>Abrechnungsmodalitäten:</strong> Dokumentation, Übergabe, Rechnungsstellung</li>
++                                </ul>
++                            </div>
++
++                            <div class="connection-box">
++                                <strong>🔗 Praxisrelevanz:</strong> Die Finanzierung beeinflusst Ihre Dokumentation. Eine korrekte und vollständige Dokumentation ist die Grundlage für die Abrechnung. Wenn wichtige Angaben fehlen, kann die Krankenkasse die Kostenübernahme ablehnen - der Patient muss dann selbst zahlen. Sie werden häufig gefragt: "Muss ich das bezahlen?" Die Antwort hängt von der medizinischen Notwendigkeit ab. Bei offensichtlich missbräuchlicher Inanspruchnahme (z.B. "RTW als Taxi") sollten Sie den Patienten aufklären und dokumentieren.
++                            </div>
++                        </div>
++                    </div>
++
++                    <div class="topic-item">
++                        <div class="topic-header">
++                            <div class="topic-title">🤝 7. Schnittstellen und interdisziplinäre Zusammenarbeit</div>
++                            <div class="topic-ue">5 UE</div>
++                        </div>
++                        <div class="topic-content">
++                            <p><strong>Lerninhalt:</strong> Der Rettungsdienst als Teil eines Netzwerks.</p>
++                            
++                            <div class="topic-details">
++                                <strong>Konkrete Themen:</strong>
++                                <ul>
++                                    <li><strong>Notärzte:</strong> Zusammenarbeit, Delegation, Kompetenzen</li>
++                                    <li><strong>Kliniken:</strong> Notaufnahmen, Fachabteilungen, Übergabestandards</li>
++                                    <li><strong>Hausärzte:</strong> Bereitschaftsdienst (116117), Zusammenarbeit bei Heimbesuchen</li>
++                                    <li><strong>Polizei:</strong> Sicherung der Einsatzstelle, Spurensicherung, Verkehrsunfälle</li>
++                                    <li><strong>Feuerwehr:</strong> Technische Rettung, Gefahrstoff, Zusammenarbeit</li>
++                                    <li><strong>Pflegedienste:</strong> Häusliche Versorgung, Informationsaustausch</li>
++                                    <li><strong>Katastrophenschutz:</strong> THW, DLRG, Bergwacht - besondere Lagen</li>
++                                </ul>
++                            </div>
++
++                            <div class="connection-box">
++                                <strong>🔗 Praxisrelevanz:</strong> Kein Notfallsanitäter arbeitet allein. Sie sind Teil eines großen Netzwerks. Eine gute Zusammenarbeit mit dem Notarzt basiert auf gegenseitigem Respekt und klarer Kommunikation. Bei der Übergabe in der Notaufnahme ist eine strukturierte Patientenübergabe nach ABCDE/SAMPLER essentiell. Die Polizei sichert Ihre Einsatzstelle - arbeiten Sie Hand in Hand. Bei Verkehrsunfällen brauchen Sie die Feuerwehr für die technische Rettung. Kennen Sie die Kompetenzen und Zuständigkeiten der anderen Akteure!
++                            </div>
++                        </div>
++                    </div>
++
++                    <div class="topic-item">
++                        <div class="topic-header">
++                            <div class="topic-title">🌍 8. Internationaler Vergleich von Rettungsdienstsystemen</div>
++                            <div class="topic-ue">5 UE</div>
++                        </div>
++                        <div class="topic-content">
++                            <p><strong>Lerninhalt:</strong> Rettungsdienst weltweit - unterschiedliche Modelle.</p>
++                            
++                            <div class="topic-details">
++                                <strong>Konkrete Themen:</strong>
++                                <ul>
++                                    <li><strong>Anglo-amerikanisches System:</strong> Paramedics, "Stay and Play"</li>
++                                    <li><strong>Franco-germanisches System:</strong> Notarzt-System, "Load and Go"</li>
++                                    <li><strong>Ausbildungsunterschiede:</strong> Paramedic vs. Notfallsanitäter vs. EMT</li>
++                                    <li><strong>Kompetenzen:</strong> Wer darf was? Medikamentengabe, Intubation</li>
++                                    <li><strong>Finanzierung:</strong> Steuerfinanziert vs. versicherungsbasiert vs. privat</li>
++                                    <li><strong>Qualitätsindikatoren:</strong> Outcomes, Überlebensraten, Patientenzufriedenheit</li>
++                                    <li><strong>Zukunftstrends:</strong> Community Paramedicine, Mobile Integrated Healthcare</li>
++                                </ul>
++                            </div>
++
++                            <div class="connection-box">
++                                <strong>🔗 Praxisrelevanz:</strong> Der internationale Vergleich zeigt: Es gibt nicht DEN richtigen Weg. Das deutsche System mit dem Notarzt-Rendezvoussystem hat Vor- und Nachteile. Wenn Sie im Ausland arbeiten wollen (z.B. Schweiz, Österreich), müssen Sie die dortigen Systeme kennen. Der Blick über den Tellerrand inspiriert: Was können wir von anderen Ländern lernen? Die Entwicklung in Richtung Community Paramedicine zeigt: Der Notfallsanitäter der Zukunft könnte mehr sein als "nur" Akut-Versorger.
++                            </div>
++                        </div>
++                    </div>
++
++                </div>
++
++                <div class="success-box">
++                    <strong>✅ Gesamtstundenverteilung:</strong> 6 + 4 + 6 + 5 + 5 + 4 + 5 + 5 = <span class="highlight">40 UE</span><br>
++                    Diese umfassende Lernsituation vermittelt ein tiefes Verständnis für die Einordnung des Notfallsanitäters im Gesundheitssystem und die komplexen Strukturen des Rettungsdienstes.
++                </div>
++            </section>
++
++            <!-- METHODEN -->
++            <section class="section">
++                <h2>🔧 Methodenvielfalt und didaktische Zugänge</h2>
++                
++                <div class="methods-grid">
++                    <div class="method-card">
++                        <div class="method-icon">📖</div>
++                        <h4>Lehrvortrag</h4>
++                        <p>Strukturierte Vermittlung von Gesundheitssystem und RD-Strukturen</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">🏥</div>
++                        <h4>Leitstellen-Hospitation</h4>
++                        <p>Praktische Einblicke in Disposition und Einsatzkoordination</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">👥</div>
++                        <h4>Gruppenarbeit</h4>
++                        <p>Vergleich verschiedener Trägermodelle und Bundesländer</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">🗺️</div>
++                        <h4>Fallstudien</h4>
++                        <p>Analyse realer Einsatzszenarien mit Schnittstellenproblemen</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">💬</div>
++                        <h4>Expertengespräche</h4>
++                        <p>Disponent, Wachleiter, Gesundheitsamt als Referenten</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">🌍</div>
++                        <h4>Internationaler Vergleich</h4>
++                        <p>Präsentationen zu Rettungsdienstsystemen verschiedener Länder</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">📊</div>
++                        <h4>Recherche</h4>
++                        <p>Eigenständige Analyse lokaler RD-Strukturen und -gesetze</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">🎥</div>
++                        <h4>Video-Dokumentation</h4>
++                        <p>Einblicke in Leitstellenarbeit und internationale Systeme</p>
++                    </div>
++                </div>
++            </section>
++
++            <!-- PRAXISAUFTRAG -->
++            <section class="section">
++                <h2>🏥 Praxisauftrag für die Lehrrettungswache</h2>
++                
++                <div class="praxis-assignment">
++                    <div class="praxis-content">
++                        <h3>Praktische Umsetzung und Vertiefung</h3>
++                        
++                        <div class="praxis-task">
++                            <h4>📋 Aufgabe 1: Organisationsanalyse der Wache</h4>
++                            <p><strong>Ziel:</strong> Strukturen und Zusammenhänge verstehen</p>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li>Recherchieren Sie: Welcher Träger betreibt "Ihre" Wache?</li>
++                                <li>Zu welchem Rettungsdienstbereich gehört die Wache?</li>
++                                <li>Welche Rettungsmittel sind stationiert? Welche Besetzung?</li>
++                                <li>Wie ist die Zusammenarbeit mit der Leitstelle organisiert?</li>
++                                <li>Erstellen Sie eine Übersicht über alle relevanten Strukturen</li>
++                            </ul>
++                            <p><strong>Zeitumfang:</strong> 2 Wochen</p>
++                        </div>
++
++                        <div class="praxis-task">
++                            <h4>📞 Aufgabe 2: Leitstellen-Hospitation</h4>
++                            <p><strong>Ziel:</strong> Dispositionsabläufe verstehen</p>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li>Hospitieren Sie mindestens einen halben Tag in der Leitstelle</li>
++                                <li>Beobachten Sie die Notrufabfrage und Disposition</li>
++                                <li>Notieren Sie: Nach welchen Kriterien wird disponiert?</li>
++                                <li>Sprechen Sie mit Disponenten über deren Herausforderungen</li>
++                                <li>Erstellen Sie einen Erfahrungsbericht (2-3 Seiten)</li>
++                            </ul>
++                            <p><strong>Zeitumfang:</strong> Nach Absprache</p>
++                        </div>
++
++                        <div class="praxis-task">
++                            <h4>🤝 Aufgabe 3: Schnittstellen-Analyse</h4>
++                            <p><strong>Ziel:</strong> Interdisziplinäre Zusammenarbeit verstehen</p>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li>Dokumentieren Sie 5 Einsätze mit Schnittstellen (Notarzt, Polizei, Feuerwehr, Klinik)</li>
++                                <li>Analysieren Sie: Wie verlief die Zusammenarbeit?</li>
++                                <li>Wo gab es Probleme? Was lief gut?</li>
++                                <li>Reflektieren Sie die Bedeutung professioneller Kommunikation</li>
++                            </ul>
++                            <p><strong>Zeitumfang:</strong> 3 Wochen</p>
++                        </div>
++
++                        <div class="praxis-task">
++                            <h4>💰 Aufgabe 4: Finanzierung verstehen</h4>
++                            <p><strong>Ziel:</strong> Abrechnungsrelevante Dokumentation</p>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li>Analysieren Sie 3 Einsatzprotokolle auf abrechnungsrelevante Angaben</li>
++                                <li>Welche Informationen sind für die Abrechnung wichtig?</li>
++                                <li>Recherchieren Sie die lokale Gebührenordnung</li>
++                                <li>Erstellen Sie eine Checkliste: "Vollständige Dokumentation"</li>
++                            </ul>
++                            <p><strong>Zeitumfang:</strong> 2 Wochen</p>
++                        </div>
++
++                    </div>
++                </div>
++            </section>
++
++            <!-- LEISTUNGSNACHWEISE -->
++            <section class="section">
++                <h2>✅ Leistungsnachweise und Prüfungsformate</h2>
++                
++                <div class="performance-grid">
++                    <div class="performance-item">
++                        <h4>📝 Theoretische Prüfung</h4>
++                        <p><strong>Format:</strong> Schriftliche Prüfung (60 Min)</p>
++                        <p><strong>Inhalte:</strong> Gesundheitssystem, RD-Strukturen, Träger, Leitstellen, Finanzierung</p>
++                        <p><strong>Bewertung:</strong> 40% der Gesamtnote</p>
++                    </div>
++
++                    <div class="performance-item">
++                        <h4>📊 Präsentation</h4>
++                        <p><strong>Format:</strong> Vortrag (15 Min) + Diskussion</p>
++                        <p><strong>Inhalte:</strong> Lokale RD-Strukturen oder internationaler Vergleich</p>
++                        <p><strong>Bewertung:</strong> 30% der Gesamtnote</p>
++                    </div>
++
++                    <div class="performance-item">
++                        <h4>📋 Praxisbericht</h4>
++                        <p><strong>Format:</strong> Schriftlich (4-6 Seiten)</p>
++                        <p><strong>Inhalte:</strong> Leitstellen-Hospitation und Organisationsanalyse</p>
++                        <p><strong>Bewertung:</strong> 20% der Gesamtnote</p>
++                    </div>
++
++                    <div class="performance-item">
++                        <h4>✅ Mündliche Prüfung</h4>
++                        <p><strong>Format:</strong> Fachgespräch (15 Min)</p>
++                        <p><strong>Inhalte:</strong> Vertiefung ausgewählter Themenbereiche</p>
++                        <p><strong>Bewertung:</strong> 10% der Gesamtnote</p>
++                    </div>
++                </div>
++            </section>
++
++            <!-- LITERATUR -->
++            <section class="section">
++                <h2>📚 Literatur und Quellenangaben</h2>
++                
++                <div class="literature-list">
++                    <ul>
++                        <li>
++                            <strong>Koch, S., Kuhnke, R. (Hrsg.) (2023):</strong> 
++                            retten – Notfallsanitäter. Stuttgart: Thieme Verlag.
++                            <br><em>→ Kapitel: Organisation des Rettungsdienstes</em>
++                        </li>
++                        <li>
++                            <strong>Landesrettungsdienstgesetz [jeweiliges Bundesland]</strong>
++                            <br><em>→ z.B. RDG M-V, BayRDG, etc.</em>
++                        </li>
++                        <li>
++                            <strong>SGB V (Sozialgesetzbuch V):</strong> 
++                            Gesetzliche Krankenversicherung, Finanzierung
++                            <br><em>→ Rechtsgrundlagen der Finanzierung</em>
++                        </li>
++                        <li>
++                            <strong>Bundesvereinigung der Arbeitsgemeinschaften der Notärzte Deutschlands (BAND):</strong> 
++                            Pyramidenprozess Rettungsdienst (2024).
++                            <br><em>→ Aktuelle Entwicklungen und Standards</em>
++                        </li>
++                        <li>
++                            <strong>Deutscher Berufsverband Rettungsdienst e.V. (DBRD):</strong> 
++                            www.dbrd.de
++                            <br><em>→ Berufsständische Informationen</em>
++                        </li>
++                    </ul>
++                </div>
++            </section>
++
++            <!-- SPIRALCURRICULUM -->
++            <section class="section">
++                <h2>🔄 Spiralcurrikulare Vernetzung</h2>
++                
++                <div class="info-box">
++                    <h3>📍 Einordnung im Gesamtcurriculum</h3>
++                    <p><strong>LS 1.2 als Fundament:</strong> Diese Lernsituation schafft das Verständnis für die Strukturen, in denen Sie arbeiten werden.</p>
++                </div>
++
++                <div class="topic-item">
++                    <div class="topic-header">
++                        <div class="topic-title">⬅️ Voraussetzungen</div>
++                    </div>
++                    <div class="topic-content">
++                        <ul>
++                            <li><strong>LS 1.1:</strong> Grundverständnis des Berufsbildes und der Ausbildung</li>
++                        </ul>
++                    </div>
++                </div>
++
++                <div class="topic-item">
++                    <div class="topic-header">
++                        <div class="topic-title">➡️ Vorbereitung auf folgende LS</div>
++                    </div>
++                    <div class="topic-content">
++                        <ul>
++                            <li><strong>LS 1.3:</strong> Kommunikation - Anwendung auf interdisziplinäre Zusammenarbeit</li>
++                            <li><strong>LS 2.1:</strong> Einsatzort - Zusammenarbeit mit Polizei/Feuerwehr</li>
++                            <li><strong>Alle medizinischen LS:</strong> Zielklinik-Auswahl, Übergabe</li>
++                            <li><strong>LS 4.1:</strong> Vertiefung rechtlicher Aspekte</li>
++                            <li><strong>LS 5.1:</strong> Großschadenslagen - Rolle der Leitstelle</li>
++                        </ul>
++                    </div>
++                </div>
++            </section>
++
++        </main>
++
++        <!-- FOOTER -->
++        <footer class="footer">
++            <p><strong>Notfallsanitäter-Curriculum ULTIMATE Edition</strong></p>
++            <p>Lernsituation 1.2 | Lernfeld 1 | 40 UE | NotSan-APrV: TB 3 (15 Std) + TB 4 (10 Std) + TB 9 (15 Std)</p>
++            <p style="margin-top: 10px; opacity: 0.8;">Erstellt: November 2025 | Mecklenburg-Vorpommern</p>
++        </footer>
++    </div>
++</body>
++</html>
