@@ -1,9 +1,3 @@
-diff --git a/site/app.js b/site/app.js
-new file mode 100644
-index 0000000000000000000000000000000000000000..c4113acae2c28ee753b34cf99d84610f1c646bf8
---- /dev/null
-+++ b/site/app.js
-@@ -0,0 +1,133 @@
 +const lernfeldList = document.getElementById("lernfeldList");
 +const content = document.getElementById("content");
 +const searchInput = document.getElementById("search");
