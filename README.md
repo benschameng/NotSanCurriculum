@@ -1,11 +1,3 @@
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
-diff --git a/README.md b/README.md
-new file mode 100644
-index 0000000000000000000000000000000000000000..f98d3e9be9328ba4e373bf7383e103989f30cc78
---- /dev/null
-+++ b/README.md
-@@ -0,0 +1,110 @@
-+# NotSan Curriculum Navigator
 +
 +Interaktive Website, um Lernfelder und Lernsituationen aus dem Curriculum der Notfallsanitäter:innen zu durchsuchen. Die Daten werden aus vorhandenen HTML-Dateien generiert und in einer kompakten Navigation dargestellt.
 +
