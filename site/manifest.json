@@ -1,0 +1,167 @@
+diff --git a/site/manifest.json b/site/manifest.json
+new file mode 100644
+index 0000000000000000000000000000000000000000..5752cbd8862f5bc11e195973f551d203b1a739de
+--- /dev/null
++++ b/site/manifest.json
+@@ -0,0 +1,161 @@
++{
++  "generatedAt": "2025-12-01T12:00:00Z",
++  "lernfelder": [
++    {
++      "title": "Lernfeld 1",
++      "id": "LF01",
++      "situationen": [
++        {
++          "id": "LS1.1",
++          "title": "Tätigkeitsfeld Rettungsdienst erkunden und berufliches Selbstverständnis entwickeln",
++          "overview": "Kick-off der Ausbildung: Berufsbild verstehen, Motivation klären, Ausbildungsstruktur und NotSan-APrV kennenlernen (16 UE).",
++          "source": "data/LF01_LS1-1.html",
++          "meta": {
++            "hours": "16 UE",
++            "year": "1. Ausbildungsjahr",
++            "aprv": "TB 3: 10 Std · TB 9: 6 Std",
++            "tags": ["Onboarding", "Selbstreflexion", "Rechtsgrundlagen"]
++          },
++          "sections": [
++            {
++              "title": "Ziele",
++              "html": "<ul>\n  <li>Struktur und Rechtsgrundlagen der NotSan-Ausbildung (NotSanG, NotSan-APrV) verstehen.</li>\n  <li>Berufsbild und Tätigkeitsfelder des NotSan erkunden.</li>\n  <li>Motivation, Erwartungen und persönliches Selbstverständnis reflektieren.</li>\n  <li>Eigenes Lern- und Zeitmanagement für die kommenden drei Jahre vorbereiten.</li>\n</ul>"
++            },
++            {
++              "title": "Inhalte & Stunden",
++              "html": "<ul>\n  <li><strong>Ausbildungsstruktur &amp; Recht (4 UE):</strong> NotSanG, NotSan-APrV, 4.600-Stunden-Modell, Lernfelder.</li>\n  <li><strong>Vollständige Handlung (3 UE):</strong> 6 Phasen von Informieren bis Reflektieren, Einsatzbezug.</li>\n  <li><strong>Berufsbild &amp; Tätigkeiten (3 UE):</strong> Einsatzspektrum, Kompetenzen nach §4 NotSanG, Teamarbeit.</li>\n  <li><strong>Perspektiven &amp; Professionalisierung (3 UE):</strong> Fort- und Weiterbildungen, Spezialisierungen.</li>\n  <li><strong>Motivation &amp; Selbstverständnis (3 UE):</strong> Stärken, Lernbedarfe, Bewältigungsstrategien.</li>\n</ul>"
++            },
++            {
++              "title": "Prüfungsformate",
++              "html": "<ul>\n  <li><strong>Schriftliche Reflexion (40 %):</strong> Motivation, Erwartungen, erste Praxiseindrücke, Lernziele.</li>\n  <li><strong>Kurzpräsentation (20 %):</strong> Vorstellung mit persönlichem Ziel.</li>\n  <li><strong>Wissenstest (30 %):</strong> Ausbildungsstruktur, NotSanG, vollständige Handlung, Tätigkeitsfelder.</li>\n  <li><strong>Lerntagebuch (10 %):</strong> Beobachtungen, Fragen, Lernfortschritte.</li>\n</ul>"
++            },
++            {
++              "title": "Praxisauftrag Wache",
++              "html": "<ul>\n  <li>Erste Orientierung auf der Wache, Team kennenlernen, Tagesablauf beobachten.</li>\n  <li>Reflexion im Lerntagebuch: Eindrücke, Überraschungen, Lernfragen (täglich 15 Min).</li>\n  <li>Erstgespräch mit Praxisanleitung: Erwartungen und Ziele klären (≥30 Min).</li>\n  <li>Mind. 5 Einsätze beobachten und dokumentieren: Tätigkeiten, Kommunikation, Abläufe.</li>\n</ul>"
++            },
++            {
++              "title": "Quellen & Weiterführendes",
++              "html": "<ul>\n  <li>Koch &amp; Kuhnke (Hrsg.): retten – Notfallsanitäter (2023), Kapitel Berufsbild.</li>\n  <li>NotSanG (2013) und NotSan-APrV (2013), Anlage 1.</li>\n  <li>DBRD: Informationen zum Berufsbild (www.dbrd.de).</li>\n</ul>"
++            },
++            {
++              "title": "Spiralcurriculum",
++              "html": "<p>Vernetzt sich mit LS 1.2 (Berufsbild im Gesundheitswesen), LS 1.3 (Kommunikation) und liefert den roten Faden der vollständigen Handlung für alle weiteren LS.</p>"
++            }
++          ]
++        },
++        {
++          "id": "LS1.2",
++          "title": "Berufsbild im Gesundheitswesen einordnen und über rechtliche Rahmenbedingungen informieren",
++          "overview": "40-UE-Vertiefung zu Gesundheitssystem, Trägerstrukturen, Leitstellen, Finanzierung und rechtlichen Grundlagen – inklusive Leitstellen-Hospitation und Praxisaufträgen.",
++          "source": "data/LF01_LS1-2.html",
++          "meta": {
++            "hours": "40 UE",
++            "year": "1. Ausbildungsjahr",
++            "aprv": "TB 3: 15 Std · TB 4: 10 Std · TB 9: 15 Std",
++            "tags": ["Gesundheitssystem", "Recht", "Leitstelle", "Finanzierung"]
++          },
++          "sections": [
++            {
++              "title": "Ziele",
++              "html": "<ul>\n  <li>Struktur und Akteure des deutschen Gesundheitssystems sicher erläutern.</li>\n  <li>Organisation des Rettungsdienstes (Träger, Leitstellen, Rettungsmittel) einordnen.</li>\n  <li>Rechtliche Grundlagen auf Bundes- und Landesebene anwenden.</li>\n  <li>Finanzierungs- und Abrechnungslogik verstehen und dokumentationssicher nutzen.</li>\n  <li>Eigene Rolle im interdisziplinären Team reflektieren.</li>\n</ul>"
++            },
++            {
++              "title": "Inhalte & Stunden",
++              "html": "<ul>\n  <li><strong>Gesundheitssystem (6 UE):</strong> ambulant/stationär/Reha, Selbstverwaltung, Finanzierung, 116117.</li>\n  <li><strong>Rettungsdienst-Historie (4 UE):</strong> Entwicklung bis NotSanG, aktuelle Trends (Telenotarzt, CP).</li>\n  <li><strong>Träger & Organisation (6 UE):</strong> öffentlich, Hilfsorganisationen, privat, Qualitäts- & Aufsichtsstrukturen.</li>\n  <li><strong>Leitstellen (5 UE):</strong> Aufgaben, Disposition, Technik, besondere Lagen.</li>\n  <li><strong>Recht (5 UE):</strong> NotSanG, SGB V, Landes-RDG, Zuständigkeiten, Hilfsfrist.</li>\n  <li><strong>Finanzierung (4 UE):</strong> Kostenträger, Gebührenordnungen, Dokumentationspflichten.</li>\n  <li><strong>Schnittstellen (5 UE):</strong> Notärzte, Polizei, Feuerwehr, Kliniken, Pflege, KatS.</li>\n  <li><strong>International (5 UE):</strong> Anglo-amerikanisch vs. franco-germanisch, Kompetenzen, Trends.</li>\n</ul>"
++            },
++            {
++              "title": "Prüfungsformate",
++              "html": "<ul>\n  <li><strong>Theoretische Prüfung (40 %):</strong> System, Strukturen, Leitstellen, Finanzierung.</li>\n  <li><strong>Präsentation (30 %):</strong> Lokale RD-Strukturen oder internationaler Vergleich.</li>\n  <li><strong>Praxisbericht (20 %):</strong> Leitstellen-Hospitation und Organisationsanalyse.</li>\n  <li><strong>Mündliche Prüfung (10 %):</strong> Vertiefung ausgewählter Themen.</li>\n</ul>"
++            },
++            {
++              "title": "Praxisauftrag Wache",
++              "html": "<ul>\n  <li>Organisationsanalyse der Lehrrettungswache: Träger, Bereich, Fahrzeugpark, Leitstellenanbindung.</li>\n  <li>Leitstellen-Hospitation: Dispositionskriterien beobachten und dokumentieren.</li>\n  <li>Schnittstellen-Analyse: mind. 5 Einsätze mit Polizei/Feuerwehr/Notarzt/Klinik dokumentieren.</li>\n  <li>Finanzierung verstehen: Einsatzprotokolle auf Abrechnungsangaben prüfen, Checkliste erstellen.</li>\n</ul>"
++            },
++            {
++              "title": "Quellen & Weiterführendes",
++              "html": "<ul>\n  <li>Koch &amp; Kuhnke (Hrsg.): retten – Notfallsanitäter (2023), Kapitel Organisation.</li>\n  <li>Landesrettungsdienstgesetz (z.B. RDG M-V, BayRDG) und SGB V.</li>\n  <li>Bundesvereinigung der Arbeitsgemeinschaften der Notärzte Deutschlands (BAND) – Pyramidenprozess Rettungsdienst (2024).</li>\n  <li>DBRD: Berufsständische Informationen (www.dbrd.de).</li>\n</ul>"
++            },
++            {
++              "title": "Spiralcurriculum",
++              "html": "<p>Voraussetzung: LS 1.1 (Berufsbild). Vorbereitung auf LS 1.3 (Kommunikation), LS 2.1 (Zusammenarbeit mit BOS), LS 4.1 (Recht) und LS 5.1 (Großschadenslagen).</p>"
++            }
++          ]
++        },
++        {
++          "id": "LS01",
++          "title": "Lernfeld 1 – Lernsituation 1: Patientenaufnahme",
++          "overview": "Fallbeispiel mit simuliertem Patientengespräch und dokumentierter Übergabe. Verzahnung mit Modul Kommunikation sowie Reanimationsalgorithmus aus Lernfeld 2.",
++          "source": "data/LF01_LS01.html",
++          "meta": {
++            "hours": "10 UE",
++            "year": "1. Ausbildungsjahr",
++            "tags": ["Anamnese", "Kommunikation"]
++          },
++          "sections": [
++            {
++              "title": "Ziele",
++              "html": "<ul>\n    <li>Standardisierte Erhebung der Patientendaten durchführen.</li>\n    <li>Kommunikation nach dem Strukturmodell der Notfallversorgung anwenden.</li>\n  </ul>"
++            },
++            {
++              "title": "Inhalte",
++              "html": "<ul>\n    <li>Anamnese mit SAMPLE-Schema</li>\n    <li>Messung von Vitalparametern</li>\n    <li>Transportpriorität ableiten</li>\n  </ul>"
++            },
++            {
++              "title": "Stundenverteilung",
++              "html": "<table>\n    <tr><th>Unterrichtsform</th><th>Stunden</th></tr>\n    <tr><td>Theorie</td><td>6</td></tr>\n    <tr><td>Skills-Training</td><td>4</td></tr>\n  </table>"
++            },
++            {
++              "title": "Prüfungsform",
++              "html": "<p>Fallbeispiel mit simuliertem Patientengespräch und dokumentierter Übergabe.</p>"
++            },
++            {
++              "title": "Quellen",
++              "html": "<ul>\n    <li>DIVI Handbuch, Kapitel Erstuntersuchung</li>\n    <li>Institutsvorgaben Patientendokumentation</li>\n  </ul>"
++            },
++            {
++              "title": "Bezüge",
++              "html": "<p>Verzahnung mit Modul Kommunikation sowie Reanimationsalgorithmus aus Lernfeld 2.</p>"
++            }
++          ]
++        },
++        {
++          "id": "LS02",
++          "title": "Lernfeld 1 – Lernsituation 2: Teamarbeit im Einsatz",
++          "overview": "Teamstation mit Bewertung der Kommunikation und Dokumentation. Verbindung zu Lernsituation 1 (Patientenaufnahme) und LF2 (Reanimation).",
++          "source": "data/LF01_LS02.html",
++          "meta": {
++            "hours": "8 UE",
++            "year": "1. Ausbildungsjahr",
++            "tags": ["CRM", "Teamwork"]
++          },
++          "sections": [
++            {
++              "title": "Ziele",
++              "html": "<ul>\n    <li>Rollenverteilung im Rettungsteam sicher gestalten.</li>\n    <li>Patientensicherheit durch Checklisten erhöhen.</li>\n  </ul>"
++            },
++            {
++              "title": "Inhalte",
++              "html": "<ul>\n    <li>CRM-Prinzipien in Notfallsituationen</li>\n    <li>Team-Time-Out und Übergaben</li>\n    <li>Dokumentation mit digitalen Formularen</li>\n  </ul>"
++            },
++            {
++              "title": "Stundenverteilung",
++              "html": "<table>\n    <tr><th>Unterrichtsform</th><th>Stunden</th></tr>\n    <tr><td>Theorie</td><td>3</td></tr>\n    <tr><td>Simulationstraining</td><td>5</td></tr>\n  </table>"
++            },
++            {
++              "title": "Prüfungsform",
++              "html": "<p>Teamstation mit Bewertung der Kommunikation und Dokumentation.</p>"
++            },
++            {
++              "title": "Quellen",
++              "html": "<ul>\n    <li>Team-Checkliste der Schule</li>\n    <li>ERC Guidelines Kommunikation</li>\n  </ul>"
++            },
++            {
++              "title": "Bezüge",
++              "html": "<p>Verbindung zu Lernsituation 1 (Patientenaufnahme) und LF2 (Reanimation).</p>"
++            }
++          ]
++        }
++      ]
++    }
++  ]
++}
