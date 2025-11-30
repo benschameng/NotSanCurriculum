@@ -1,0 +1,1187 @@
++<!DOCTYPE html>
++<html lang="de">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <title>LS 1.1 - Tätigkeitsfeld Rettungsdienst erkunden | NotSan Curriculum ULTIMATE</title>
++    <style>
++        @media print {
++            @page { margin: 2cm; size: A4; }
++            .no-print { display: none; }
++            body { background: white; }
++        }
++        
++        * { margin: 0; padding: 0; box-sizing: border-box; }
++        
++        body {
++            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
++            line-height: 1.8;
++            color: #2c3e50;
++            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
++            padding: 20px;
++        }
++        
++        .container {
++            max-width: 1400px;
++            margin: 0 auto;
++            background: white;
++            border-radius: 20px;
++            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
++            overflow: hidden;
++        }
++        
++        .header {
++            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
++            color: white;
++            padding: 50px;
++            position: relative;
++            overflow: hidden;
++        }
++        
++        .header::before {
++            content: '🚑';
++            position: absolute;
++            top: -20px;
++            right: 50px;
++            font-size: 200px;
++            opacity: 0.1;
++            transform: rotate(-15deg);
++        }
++        
++        .header-content {
++            position: relative;
++            z-index: 2;
++        }
++        
++        .ls-number {
++            font-size: 1.2em;
++            opacity: 0.9;
++            margin-bottom: 10px;
++            letter-spacing: 2px;
++        }
++        
++        .header h1 {
++            font-size: 3em;
++            margin-bottom: 20px;
++            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
++            line-height: 1.3;
++        }
++        
++        .meta-info {
++            display: grid;
++            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
++            gap: 20px;
++            margin-top: 30px;
++        }
++        
++        .meta-item {
++            background: rgba(255,255,255,0.2);
++            padding: 20px;
++            border-radius: 12px;
++            backdrop-filter: blur(10px);
++            text-align: center;
++        }
++        
++        .meta-label {
++            font-size: 0.9em;
++            opacity: 0.9;
++            margin-bottom: 8px;
++        }
++        
++        .meta-value {
++            font-size: 1.8em;
++            font-weight: bold;
++        }
++        
++        .aprv-mapping {
++            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
++            color: white;
++            padding: 35px;
++            margin: 40px 50px;
++            border-radius: 15px;
++            box-shadow: 0 10px 30px rgba(142, 68, 173, 0.3);
++            position: relative;
++            overflow: hidden;
++        }
++        
++        .aprv-mapping::before {
++            content: '📋';
++            position: absolute;
++            top: 15px;
++            right: 25px;
++            font-size: 80px;
++            opacity: 0.15;
++        }
++        
++        .aprv-mapping h3 {
++            font-size: 1.8em;
++            margin-bottom: 20px;
++            display: flex;
++            align-items: center;
++            gap: 12px;
++        }
++        
++        .aprv-grid {
++            display: grid;
++            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
++            gap: 15px;
++            margin-top: 20px;
++        }
++        
++        .aprv-item {
++            background: rgba(255,255,255,0.15);
++            padding: 20px;
++            border-radius: 10px;
++            backdrop-filter: blur(10px);
++            border-left: 4px solid rgba(255,255,255,0.5);
++            transition: all 0.3s ease;
++        }
++        
++        .aprv-item:hover {
++            background: rgba(255,255,255,0.25);
++            transform: translateX(5px);
++        }
++        
++        .aprv-item-header {
++            display: flex;
++            justify-content: space-between;
++            align-items: center;
++            margin-bottom: 10px;
++        }
++        
++        .aprv-number {
++            font-size: 1.1em;
++            font-weight: bold;
++            opacity: 0.9;
++        }
++        
++        .aprv-hours {
++            background: rgba(255,255,255,0.3);
++            padding: 5px 12px;
++            border-radius: 20px;
++            font-weight: bold;
++            font-size: 1.1em;
++        }
++        
++        .aprv-title {
++            font-size: 1.1em;
++            line-height: 1.4;
++            font-weight: 500;
++        }
++        
++        .aprv-total {
++            background: rgba(255,255,255,0.25);
++            padding: 20px;
++            border-radius: 10px;
++            margin-top: 20px;
++            text-align: center;
++            font-size: 1.3em;
++            font-weight: bold;
++            border: 2px solid rgba(255,255,255,0.4);
++        }
++        
++        .content {
++            padding: 60px;
++        }
++        
++        .section {
++            margin-bottom: 60px;
++            border-left: 5px solid #e74c3c;
++            padding-left: 30px;
++            position: relative;
++        }
++        
++        .section::before {
++            content: '';
++            position: absolute;
++            left: -5px;
++            top: 0;
++            width: 5px;
++            height: 60px;
++            background: #3498db;
++        }
++        
++        .section h2 {
++            color: #e74c3c;
++            font-size: 2.2em;
++            margin-bottom: 25px;
++            padding-bottom: 15px;
++            border-bottom: 3px solid #ecf0f1;
++            display: flex;
++            align-items: center;
++            gap: 15px;
++        }
++        
++        .section h3 {
++            color: #2c3e50;
++            font-size: 1.6em;
++            margin: 30px 0 15px 0;
++            display: flex;
++            align-items: center;
++            gap: 10px;
++        }
++        
++        .case-study {
++            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
++            color: white;
++            padding: 40px;
++            border-radius: 15px;
++            margin: 30px 0;
++            position: relative;
++            overflow: hidden;
++            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
++        }
++        
++        .case-study::before {
++            content: '🎓';
++            position: absolute;
++            top: 20px;
++            right: 30px;
++            font-size: 120px;
++            opacity: 0.15;
++        }
++        
++        .case-study h3 {
++            color: white;
++            font-size: 2em;
++            margin-bottom: 25px;
++        }
++        
++        .case-content {
++            position: relative;
++            z-index: 2;
++        }
++        
++        .case-box {
++            background: rgba(255,255,255,0.15);
++            padding: 20px;
++            border-radius: 10px;
++            margin: 15px 0;
++            backdrop-filter: blur(5px);
++            border-left: 4px solid rgba(255,255,255,0.5);
++        }
++        
++        .case-box h4 {
++            font-size: 1.3em;
++            margin-bottom: 12px;
++            display: flex;
++            align-items: center;
++            gap: 10px;
++        }
++        
++        .competency-grid {
++            display: grid;
++            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
++            gap: 25px;
++            margin: 30px 0;
++        }
++        
++        .competency-card {
++            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
++            color: white;
++            padding: 30px;
++            border-radius: 15px;
++            box-shadow: 0 10px 25px rgba(243, 156, 18, 0.3);
++            transition: transform 0.3s ease;
++        }
++        
++        .competency-card:hover {
++            transform: translateY(-5px);
++        }
++        
++        .competency-card h4 {
++            font-size: 1.5em;
++            margin-bottom: 20px;
++            display: flex;
++            align-items: center;
++            gap: 12px;
++            border-bottom: 2px solid rgba(255,255,255,0.3);
++            padding-bottom: 12px;
++        }
++        
++        .competency-card ul {
++            list-style: none;
++            padding: 0;
++        }
++        
++        .competency-card li {
++            padding: 12px 0;
++            padding-left: 30px;
++            position: relative;
++            border-bottom: 1px solid rgba(255,255,255,0.2);
++        }
++        
++        .competency-card li:last-child {
++            border-bottom: none;
++        }
++        
++        .competency-card li::before {
++            content: '✓';
++            position: absolute;
++            left: 0;
++            font-weight: bold;
++            font-size: 1.2em;
++        }
++        
++        .topics-section {
++            background: #f8f9fa;
++            padding: 40px;
++            border-radius: 15px;
++            margin: 30px 0;
++        }
++        
++        .topic-item {
++            background: white;
++            border: 2px solid #e9ecef;
++            border-radius: 12px;
++            padding: 25px;
++            margin: 20px 0;
++            transition: all 0.3s ease;
++            position: relative;
++            overflow: hidden;
++        }
++        
++        .topic-item:hover {
++            border-color: #3498db;
++            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.2);
++            transform: translateX(5px);
++        }
++        
++        .topic-item::before {
++            content: '';
++            position: absolute;
++            left: 0;
++            top: 0;
++            width: 6px;
++            height: 100%;
++            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
++            transform: scaleY(0);
++            transition: transform 0.3s ease;
++        }
++        
++        .topic-item:hover::before {
++            transform: scaleY(1);
++        }
++        
++        .topic-header {
++            display: flex;
++            justify-content: space-between;
++            align-items: center;
++            margin-bottom: 15px;
++        }
++        
++        .topic-title {
++            font-size: 1.4em;
++            color: #2c3e50;
++            font-weight: 600;
++        }
++        
++        .topic-ue {
++            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
++            color: white;
++            padding: 8px 20px;
++            border-radius: 25px;
++            font-weight: bold;
++            font-size: 1.1em;
++        }
++        
++        .topic-content {
++            color: #555;
++            line-height: 1.8;
++        }
++        
++        .topic-details {
++            background: #f8f9fa;
++            padding: 15px;
++            border-radius: 8px;
++            margin-top: 15px;
++        }
++        
++        .topic-details ul {
++            margin-left: 20px;
++            margin-top: 10px;
++        }
++        
++        .topic-details li {
++            margin: 8px 0;
++            color: #444;
++        }
++        
++        .connection-box {
++            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
++            color: white;
++            padding: 20px;
++            border-radius: 10px;
++            margin-top: 15px;
++            border-left: 5px solid rgba(255,255,255,0.5);
++        }
++        
++        .connection-box strong {
++            font-size: 1.1em;
++            display: block;
++            margin-bottom: 8px;
++        }
++        
++        .methods-grid {
++            display: grid;
++            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
++            gap: 20px;
++            margin: 30px 0;
++        }
++        
++        .method-card {
++            background: white;
++            border: 2px solid #e9ecef;
++            border-radius: 12px;
++            padding: 25px;
++            text-align: center;
++            transition: all 0.3s ease;
++        }
++        
++        .method-card:hover {
++            border-color: #2ecc71;
++            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.2);
++            transform: translateY(-5px);
++        }
++        
++        .method-icon {
++            font-size: 3em;
++            margin-bottom: 15px;
++        }
++        
++        .method-card h4 {
++            color: #2c3e50;
++            font-size: 1.3em;
++            margin-bottom: 10px;
++        }
++        
++        .praxis-assignment {
++            background: linear-gradient(135deg, #ff7675 0%, #d63031 100%);
++            color: white;
++            padding: 40px;
++            border-radius: 15px;
++            margin: 30px 0;
++            position: relative;
++            box-shadow: 0 10px 30px rgba(214, 48, 49, 0.3);
++        }
++        
++        .praxis-assignment::before {
++            content: '🏥';
++            position: absolute;
++            top: 20px;
++            right: 30px;
++            font-size: 100px;
++            opacity: 0.15;
++        }
++        
++        .praxis-assignment h3 {
++            color: white;
++            font-size: 2em;
++            margin-bottom: 25px;
++        }
++        
++        .praxis-content {
++            position: relative;
++            z-index: 2;
++        }
++        
++        .praxis-task {
++            background: rgba(255,255,255,0.15);
++            padding: 20px;
++            border-radius: 10px;
++            margin: 15px 0;
++            backdrop-filter: blur(5px);
++        }
++        
++        .praxis-task h4 {
++            font-size: 1.3em;
++            margin-bottom: 12px;
++        }
++        
++        .performance-grid {
++            display: grid;
++            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
++            gap: 20px;
++            margin: 30px 0;
++        }
++        
++        .performance-item {
++            background: white;
++            border: 2px solid #e9ecef;
++            border-left: 5px solid #17a2b8;
++            padding: 25px;
++            border-radius: 10px;
++            transition: all 0.3s ease;
++        }
++        
++        .performance-item:hover {
++            box-shadow: 0 8px 25px rgba(23, 162, 184, 0.2);
++            transform: translateY(-3px);
++        }
++        
++        .performance-item h4 {
++            color: #17a2b8;
++            font-size: 1.4em;
++            margin-bottom: 15px;
++            display: flex;
++            align-items: center;
++            gap: 10px;
++        }
++        
++        .literature-list {
++            background: #f8f9fa;
++            padding: 30px;
++            border-radius: 12px;
++            margin: 20px 0;
++        }
++        
++        .literature-list ul {
++            list-style: none;
++            padding: 0;
++        }
++        
++        .literature-list li {
++            padding: 15px;
++            margin: 10px 0;
++            background: white;
++            border-radius: 8px;
++            border-left: 4px solid #3498db;
++            transition: all 0.3s ease;
++        }
++        
++        .literature-list li:hover {
++            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
++            transform: translateX(5px);
++        }
++        
++        .highlight {
++            background: linear-gradient(120deg, #ffd700 0%, #ffed4e 100%);
++            padding: 3px 8px;
++            border-radius: 4px;
++            color: #333;
++            font-weight: bold;
++        }
++        
++        .info-box {
++            background: #e8f4f8;
++            border-left: 5px solid #3498db;
++            padding: 20px;
++            border-radius: 8px;
++            margin: 20px 0;
++        }
++        
++        .success-box {
++            background: #e8f8f5;
++            border-left: 5px solid #2ecc71;
++            padding: 20px;
++            border-radius: 8px;
++            margin: 20px 0;
++        }
++        
++        .warning-box {
++            background: #fef5e7;
++            border-left: 5px solid #f39c12;
++            padding: 20px;
++            border-radius: 8px;
++            margin: 20px 0;
++        }
++        
++        .footer {
++            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
++            color: white;
++            padding: 40px;
++            text-align: center;
++        }
++        
++        .footer p {
++            opacity: 0.9;
++            line-height: 1.8;
++        }
++        
++        @media (max-width: 768px) {
++            .header h1 { font-size: 2em; }
++            .content { padding: 30px 20px; }
++            .competency-grid { grid-template-columns: 1fr; }
++            .topics-section { padding: 20px; }
++            .aprv-grid { grid-template-columns: 1fr; }
++        }
++    </style>
++</head>
++<body>
++    <div class="container">
++        <!-- HEADER -->
++        <header class="header">
++            <div class="header-content">
++                <div class="ls-number">LERNSITUATION 1.1 | LERNFELD 1: BERUF UND PERSON</div>
++                <h1>Tätigkeitsfeld Rettungsdienst erkunden, das Berufsbild Notfallsanitäter kennenlernen und berufliches Selbstverständnis entwickeln</h1>
++                
++                <div class="meta-info">
++                    <div class="meta-item">
++                        <div class="meta-label">Unterrichtseinheiten</div>
++                        <div class="meta-value">16 UE</div>
++                    </div>
++                    <div class="meta-item">
++                        <div class="meta-label">Lernfeld</div>
++                        <div class="meta-value">LF 1</div>
++                    </div>
++                    <div class="meta-item">
++                        <div class="meta-label">Ausbildungsjahr</div>
++                        <div class="meta-value">1. Jahr</div>
++                    </div>
++                    <div class="meta-item">
++                        <div class="meta-label">BPR/SAA</div>
++                        <div class="meta-value">-</div>
++                    </div>
++                </div>
++            </div>
++        </header>
++
++        <!-- NotSan-APrV ZUORDNUNG -->
++        <div class="aprv-mapping">
++            <h3>📋 Zuordnung zu den Themenbereichen der NotSan-APrV (Anlage 1)</h3>
++            <p style="opacity: 0.95; margin-bottom: 20px; font-size: 1.05em;">
++                Diese Lernsituation deckt folgende Themenbereiche der Ausbildungs- und Prüfungsverordnung für Notfallsanitäterinnen und Notfallsanitäter ab:
++            </p>
++            
++            <div class="aprv-grid">
++                <div class="aprv-item">
++                    <div class="aprv-item-header">
++                        <span class="aprv-number">Themenbereich 3</span>
++                        <span class="aprv-hours">10 Std</span>
++                    </div>
++                    <div class="aprv-title">
++                        Berufsbezogene Rechts- und Berufskunde:<br>
++                        NotSanG, NotSan-APrV, Berufsausübung, berufliche Perspektiven
++                    </div>
++                </div>
++                
++                <div class="aprv-item">
++                    <div class="aprv-item-header">
++                        <span class="aprv-number">Themenbereich 9</span>
++                        <span class="aprv-hours">6 Std</span>
++                    </div>
++                    <div class="aprv-title">
++                        Berufs-, Gesetzes- und Staatsbürgerkunde:<br>
++                        Berufskunde, Ausbildungsstruktur, berufliches Selbstverständnis
++                    </div>
++                </div>
++            </div>
++            
++            <div class="aprv-total">
++                <span style="opacity: 0.9;">Gesamt NotSan-APrV-Stunden in dieser LS:</span><br>
++                <span style="font-size: 1.4em;">16 Stunden</span>
++            </div>
++            
++            <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px; font-size: 0.95em;">
++                <strong>💡 Hinweis:</strong> Diese Lernsituation bildet den Einstieg in die Ausbildung. Sie gibt erste Orientierung über das Berufsbild, die Ausbildungsstruktur und hilft bei der Entwicklung einer ersten beruflichen Identität.
++            </div>
++        </div>
++
++        <!-- MAIN CONTENT -->
++        <main class="content">
++            
++            <!-- FALLBEZUG -->
++            <section class="section">
++                <h2>🎓 Initialer Fallbezug</h2>
++                
++                <div class="case-study">
++                    <div class="case-content">
++                        <h3>Der erste Tag - Willkommen in Ihrer Ausbildung zum Notfallsanitäter</h3>
++                        
++                        <div class="case-box">
++                            <h4>🏫 Szenario: Auftaktveranstaltung in der Berufsfachschule</h4>
++                            <p>Es ist der erste Schultag Ihrer dreijährigen Ausbildung zum Notfallsanitäter. Nach der Begrüßung durch die Schulleitung stellen sich Ihre Mitauszubildenden vor. Die Gruppe ist bunt gemischt: Einige haben bereits Erfahrung als Rettungssanitäter, andere kommen direkt von der Schule. Alle verbindet die gleiche Frage:</p>
++                            <p style="font-style: italic; margin-top: 15px; font-size: 1.1em;">"Was erwartet mich in den nächsten drei Jahren? Was macht einen Notfallsanitäter aus? Wie ist die Ausbildung aufgebaut? Was kann ich später damit machen?"</p>
++                        </div>
++
++                        <div class="case-box">
++                            <h4>📚 Die Ausbildungsstruktur wird vorgestellt</h4>
++                            <p>Die Schulleitung erklärt:</p>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li><strong>Gesamtdauer:</strong> 3 Jahre (4.600 Stunden)</li>
++                                <li><strong>Theoretischer und praktischer Unterricht:</strong> 1.920 Stunden</li>
++                                <li><strong>Praktische Ausbildung Lehrrettungswache:</strong> 1.960 Stunden</li>
++                                <li><strong>Praktische Ausbildung Krankenhaus:</strong> 720 Stunden</li>
++                                <li><strong>Aufbau:</strong> 5 Lernfelder mit insgesamt 29 Lernsituationen</li>
++                                <li><strong>Modell:</strong> Vollständige Handlung (informieren, planen, entscheiden, ausführen, kontrollieren, reflektieren)</li>
++                            </ul>
++                            <p style="margin-top: 15px;">Sie bekommen Ihr NotSanG und die NotSan-APrV ausgehändigt - Ihre rechtlichen Grundlagen für die nächsten drei Jahre.</p>
++                        </div>
++
++                        <div class="case-box">
++                            <h4>💭 Ihre Gedanken und Fragen</h4>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li>Warum habe ich mich für diesen Beruf entschieden?</li>
++                                <li>Welche Erwartungen habe ich an die Ausbildung?</li>
++                                <li>Was sind meine Stärken und wo muss ich noch lernen?</li>
++                                <li>Wie sieht ein typischer Arbeitstag als Notfallsanitäter aus?</li>
++                                <li>Welche beruflichen Perspektiven habe ich nach der Ausbildung?</li>
++                                <li>Wie gehe ich mit der Verantwortung um?</li>
++                                <li>Schaffe ich die Ausbildung?</li>
++                            </ul>
++                        </div>
++
++                        <div class="case-box">
++                            <h4>🎯 Lernziele aus dem Fall</h4>
++                            <p>Die Auszubildenden sollen:</p>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li>Die Struktur der Ausbildung verstehen (NotSanG, NotSan-APrV)</li>
++                                <li>Das Modell der vollständigen Handlung kennenlernen</li>
++                                <li>Erste Einblicke in das Tätigkeitsfeld Rettungsdienst gewinnen</li>
++                                <li>Ihre Motivation und Erwartungen reflektieren</li>
++                                <li>Berufliche Perspektiven und Entwicklungsmöglichkeiten erkennen</li>
++                                <li>Ein erstes berufliches Selbstverständnis entwickeln</li>
++                            </ul>
++                        </div>
++                    </div>
++                </div>
++            </section>
++
++            <!-- KOMPETENZZIELE -->
++            <section class="section">
++                <h2>🎯 Kompetenzziele nach Bloom's Taxonomie</h2>
++                
++                <div class="competency-grid">
++                    <div class="competency-card">
++                        <h4>🧠 Kognitive Kompetenz</h4>
++                        <ul>
++                            <li>Die Struktur der Notfallsanitäter-Ausbildung erklären können (Dauer, Stundenverteilung, Lernorte)</li>
++                            <li>NotSanG und NotSan-APrV als rechtliche Grundlagen kennen</li>
++                            <li>Das Modell der vollständigen Handlung verstehen</li>
++                            <li>Tätigkeitsfelder eines Notfallsanitäters benennen</li>
++                            <li>Berufliche Perspektiven und Weiterbildungsmöglichkeiten kennen</li>
++                            <li>Den Unterschied zu anderen Qualifikationen (RettSan, RettAss) verstehen</li>
++                        </ul>
++                    </div>
++
++                    <div class="competency-card">
++                        <h4>🔧 Psychomotorische Kompetenz</h4>
++                        <ul>
++                            <li>Mit Ausbildungsunterlagen strukturiert arbeiten</li>
++                            <li>Lernziele formulieren und dokumentieren</li>
++                            <li>Ein Lerntagebuch führen</li>
++                            <li>Präsentationstechniken anwenden</li>
++                            <li>Feedback geben und annehmen</li>
++                            <li>Zeitmanagement für Lernphasen entwickeln</li>
++                        </ul>
++                    </div>
++
++                    <div class="competency-card">
++                        <h4>❤️ Affektive Kompetenz</h4>
++                        <ul>
++                            <li>Motivation für den Beruf reflektieren</li>
++                            <li>Realistische Erwartungen an die Ausbildung entwickeln</li>
++                            <li>Offenheit für lebenslanges Lernen zeigen</li>
++                            <li>Verantwortungsbewusstsein für den eigenen Lernprozess entwickeln</li>
++                            <li>Wertschätzung für die Profession Notfallsanitäter aufbauen</li>
++                            <li>Bereitschaft zur Selbstreflexion zeigen</li>
++                        </ul>
++                    </div>
++
++                    <div class="competency-card">
++                        <h4>⚡ Handlungskompetenz</h4>
++                        <ul>
++                            <li>Eigene Lernbedarfe erkennen und formulieren</li>
++                            <li>Lernstrategien für die dreijährige Ausbildung entwickeln</li>
++                            <li>Sich aktiv in die Lerngruppe einbringen</li>
++                            <li>Mit Unsicherheiten und Herausforderungen konstruktiv umgehen</li>
++                            <li>Berufliche Perspektiven für sich selbst entwickeln</li>
++                            <li>Ein erstes professionelles Selbstverständnis aufbauen</li>
++                        </ul>
++                    </div>
++                </div>
++            </section>
++
++            <!-- DETAILLIERTE THEMEN -->
++            <section class="section">
++                <h2>📚 Detaillierte Themenaufstellung mit Stundenverteilung</h2>
++                
++                <div class="topics-section">
++                    
++                    <div class="topic-item">
++                        <div class="topic-header">
++                            <div class="topic-title">📖 1. Die Notfallsanitäter-Ausbildung: Struktur und rechtliche Grundlagen</div>
++                            <div class="topic-ue">4 UE</div>
++                        </div>
++                        <div class="topic-content">
++                            <p><strong>Lerninhalt:</strong> Grundlegendes Verständnis der Ausbildungsstruktur und ihrer rechtlichen Basis.</p>
++                            
++                            <div class="topic-details">
++                                <strong>Konkrete Themen:</strong>
++                                <ul>
++                                    <li><strong>NotSanG (Notfallsanitätergesetz):</strong> Ausbildungsziel (§ 4), Dauer und Struktur (§ 5), Ausbildungsziel</li>
++                                    <li><strong>NotSan-APrV:</strong> Anlage 1 (Stundenverteilung), Lernorte, Prüfungen</li>
++                                    <li><strong>Ausbildungsaufbau:</strong> 4.600 Stunden gesamt (1.920 Schule, 1.960 Wache, 720 Krankenhaus)</li>
++                                    <li><strong>Duale Ausbildung:</strong> Theorie-Praxis-Verzahnung, Praxisanleiter, Mentoren</li>
++                                    <li><strong>Lernfelder und Lernsituationen:</strong> 5 Lernfelder, 29 Lernsituationen</li>
++                                    <li><strong>Prüfungen:</strong> Zwischenprüfung, Staatsprüfung (schriftlich, praktisch, mündlich)</li>
++                                </ul>
++                            </div>
++
++                            <div class="connection-box">
++                                <strong>🔗 Praxisrelevanz:</strong> Das Verständnis der Ausbildungsstruktur hilft Ihnen, sich zu orientieren und realistische Erwartungen zu entwickeln. Sie wissen, was in welchem Jahr auf Sie zukommt und wie Theorie und Praxis verzahnt sind. Die Kenntnis des NotSanG und der NotSan-APrV ist Ihre rechtliche Grundlage - diese Gesetze regeln Ihre gesamte Ausbildung und spätere Berufsausübung.
++                            </div>
++                        </div>
++                    </div>
++
++                    <div class="topic-item">
++                        <div class="topic-header">
++                            <div class="topic-title">🎯 2. Das Modell der vollständigen Handlung</div>
++                            <div class="topic-ue">3 UE</div>
++                        </div>
++                        <div class="topic-content">
++                            <p><strong>Lerninhalt:</strong> Verständnis des didaktischen Konzepts Ihrer Ausbildung.</p>
++                            
++                            <div class="topic-details">
++                                <strong>Konkrete Themen:</strong>
++                                <ul>
++                                    <li><strong>Die 6 Phasen:</strong> Informieren - Planen - Entscheiden - Ausführen - Kontrollieren - Reflektieren</li>
++                                    <li><strong>Anwendung im Rettungsdienst:</strong> Von der Alarmierung bis zur Nachbesprechung</li>
++                                    <li><strong>Lernsituationen:</strong> Aufbau, Fallbezug, Kompetenzziele</li>
++                                    <li><strong>Handlungsorientiertes Lernen:</strong> Eigenverantwortung, Problemlösung</li>
++                                    <li><strong>Praxistransfer:</strong> Vom Fallbeispiel zum realen Einsatz</li>
++                                    <li><strong>Reflexion:</strong> Bedeutung für den Lernprozess</li>
++                                </ul>
++                            </div>
++
++                            <div class="connection-box">
++                                <strong>🔗 Praxisrelevanz:</strong> Das Modell der vollständigen Handlung ist nicht nur ein didaktisches Konzept - es entspricht exakt Ihrem späteren Arbeitsablauf im Rettungsdienst. Von der Alarmierung (informieren) über die Einsatzvorbereitung (planen), die Entscheidung für Maßnahmen (entscheiden), deren Durchführung (ausführen), die Erfolgskontrolle (kontrollieren) bis zur Nachbesprechung (reflektieren). Wer dieses Modell verinnerlicht, handelt strukturiert und sicher.
++                            </div>
++                        </div>
++                    </div>
++
++                    <div class="topic-item">
++                        <div class="topic-header">
++                            <div class="topic-title">🚑 3. Das Berufsbild Notfallsanitäter - Tätigkeitsfelder und Aufgaben</div>
++                            <div class="topic-ue">3 UE</div>
++                        </div>
++                        <div class="topic-content">
++                            <p><strong>Lerninhalt:</strong> Erste Einblicke in das vielfältige Tätigkeitsfeld.</p>
++                            
++                            <div class="topic-details">
++                                <strong>Konkrete Themen:</strong>
++                                <ul>
++                                    <li><strong>Haupttätigkeit Notfallrettung:</strong> RTW, NEF, NAW - Einsatzspektrum</li>
++                                    <li><strong>Krankentransport:</strong> Qualifizierte Begleitung, Überwachung</li>
++                                    <li><strong>Besondere Einsatzlagen:</strong> MANV, Großschadenslagen, Katastrophen</li>
++                                    <li><strong>Tätigkeiten:</strong> Diagnostik, Therapie, Überwachung, Transport</li>
++                                    <li><strong>Kompetenzen nach § 4 NotSanG:</strong> Eigenverantwortliche Maßnahmen, Assistenz</li>
++                                    <li><strong>Arbeitszeiten:</strong> Schichtdienst (12h/24h), Bereitschaftsdienst, Rufbereitschaft</li>
++                                </ul>
++                            </div>
++
++                            <div class="connection-box">
++                                <strong>🔗 Praxisrelevanz:</strong> Als Notfallsanitäter sind Sie erste medizinische Fachkraft am Notfallort. Sie übernehmen Verantwortung für Menschenleben, treffen wichtige Entscheidungen und arbeiten unter Zeitdruck. Das erfordert nicht nur medizinisches Wissen, sondern auch Belastbarkeit, Kommunikationsfähigkeit und Teamgeist. Der Beruf ist körperlich und psychisch fordernd - aber auch unglaublich sinnstiftend.
++                            </div>
++                        </div>
++                    </div>
++
++                    <div class="topic-item">
++                        <div class="topic-header">
++                            <div class="topic-title">🌟 4. Berufliche Perspektiven und Professionalisierung</div>
++                            <div class="topic-ue">3 UE</div>
++                        </div>
++                        <div class="topic-content">
++                            <p><strong>Lerninhalt:</strong> Entwicklungsmöglichkeiten und kontinuierliche Weiterbildung.</p>
++                            
++                            <div class="topic-details">
++                                <strong>Konkrete Themen:</strong>
++                                <ul>
++                                    <li><strong>Fort- und Weiterbildung:</strong> Pflichtfortbildungen (30h/Jahr), Fachweiterbildungen</li>
++                                    <li><strong>Spezialisierungen:</strong> Praxisanleiter, Lehrkraft, Organisatorischer Leiter, Luftrettung</li>
++                                    <li><strong>Studienmöglichkeiten:</strong> Rettungswesen, Notfallsanitäter/Physician Assistant, Medizin</li>
++                                    <li><strong>Führungspositionen:</strong> Wachleiter, Rettungsdienstleiter, QM-Beauftragter</li>
++                                    <li><strong>Alternative Tätigkeitsfelder:</strong> Leitstelle, Katastrophenschutz, Simulation, Industrie</li>
++                                    <li><strong>Internationale Perspektiven:</strong> Anerkennung im Ausland, internationale Einsätze</li>
++                                </ul>
++                            </div>
++
++                            <div class="connection-box">
++                                <strong>🔗 Praxisrelevanz:</strong> Die Notfallsanitäter-Ausbildung ist kein Endpunkt, sondern der Beginn einer lebenslangen beruflichen Entwicklung. Die Medizin entwickelt sich ständig weiter - neue Leitlinien, neue Medikamente, neue Techniken. Wer aufhören zu lernen, hört auf, ein guter Notfallsanitäter zu sein. Die vielfältigen Entwicklungsmöglichkeiten zeigen: Mit dieser Ausbildung stehen Ihnen viele Türen offen.
++                            </div>
++                        </div>
++                    </div>
++
++                    <div class="topic-item">
++                        <div class="topic-header">
++                            <div class="topic-title">💭 5. Motivation, Erwartungen und berufliches Selbstverständnis</div>
++                            <div class="topic-ue">3 UE</div>
++                        </div>
++                        <div class="topic-content">
++                            <p><strong>Lerninhalt:</strong> Reflexion der eigenen Motivation und Entwicklung einer professionellen Identität.</p>
++                            
++                            <div class="topic-details">
++                                <strong>Konkrete Themen:</strong>
++                                <ul>
++                                    <li><strong>Motivationsklärung:</strong> Warum Notfallsanitäter? Was erwarte ich?</li>
++                                    <li><strong>Selbsteinschätzung:</strong> Stärken, Entwicklungsfelder, Lernbedarfe</li>
++                                    <li><strong>Berufliche Identität:</strong> Was macht einen guten Notfallsanitäter aus?</li>
++                                    <li><strong>Herausforderungen:</strong> Belastungen, Stress, emotionale Anforderungen</li>
++                                    <li><strong>Bewältigungsstrategien:</strong> Selbstfürsorge, Supervision, Peer-Support</li>
++                                    <li><strong>Persönliche Ziele:</strong> Was will ich in 3 Jahren erreicht haben?</li>
++                                </ul>
++                            </div>
++
++                            <div class="connection-box">
++                                <strong>🔗 Praxisrelevanz:</strong> Eine klare Motivation und realistische Erwartungen sind der beste Schutz vor Enttäuschung und Überforderung. Wer weiß, warum er diesen Beruf gewählt hat, kann auch in schwierigen Situationen darauf zurückgreifen. Die Reflexion der eigenen Stärken und Schwächen ist der Ausgangspunkt für gezielte Kompetenzentwicklung. Ein stabiles berufliches Selbstverständnis entwickelt sich nicht von heute auf morgen - aber der erste Schultag ist ein guter Anfang.
++                            </div>
++                        </div>
++                    </div>
++
++                </div>
++
++                <div class="success-box">
++                    <strong>✅ Gesamtstundenverteilung:</strong> 4 + 3 + 3 + 3 + 3 = <span class="highlight">16 UE</span><br>
++                    Diese Lernsituation schafft die Grundlage für Ihre gesamte Ausbildung. Sie gibt Orientierung, klärt Erwartungen und hilft bei der Entwicklung eines ersten professionellen Selbstverständnisses.
++                </div>
++            </section>
++
++            <!-- METHODEN -->
++            <section class="section">
++                <h2>🔧 Methodenvielfalt und didaktische Zugänge</h2>
++                
++                <div class="methods-grid">
++                    <div class="method-card">
++                        <div class="method-icon">👥</div>
++                        <h4>Kennenlernrunde</h4>
++                        <p>Strukturiertes Kennenlernen der Lerngruppe und gegenseitiger Austausch</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">📖</div>
++                        <h4>Lehrvortrag</h4>
++                        <p>Einführung in NotSanG, NotSan-APrV und Ausbildungsstruktur</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">💭</div>
++                        <h4>Reflexionsübungen</h4>
++                        <p>Motivation, Erwartungen und Ziele schriftlich reflektieren</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">🗣️</div>
++                        <h4>Gruppendiskussion</h4>
++                        <p>Austausch über Berufsbild und Herausforderungen</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">🎥</div>
++                        <h4>Video-Dokumentation</h4>
++                        <p>Einblicke in den Arbeitsalltag von Notfallsanitätern</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">📝</div>
++                        <h4>Lerntagebuch</h4>
++                        <p>Beginn der kontinuierlichen Selbstreflexion</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">👨‍🏫</div>
++                        <h4>Erfahrungsberichte</h4>
++                        <p>Ehemalige Auszubildende und erfahrene NotSan berichten</p>
++                    </div>
++
++                    <div class="method-card">
++                        <div class="method-icon">🎯</div>
++                        <h4>Zielsetzung</h4>
++                        <p>Formulierung persönlicher Lernziele für die Ausbildung</p>
++                    </div>
++                </div>
++            </section>
++
++            <!-- PRAXISAUFTRAG -->
++            <section class="section">
++                <h2>🏥 Praxisauftrag für die Lehrrettungswache</h2>
++                
++                <div class="praxis-assignment">
++                    <div class="praxis-content">
++                        <h3>Praktische Umsetzung und Vertiefung</h3>
++                        
++                        <div class="praxis-task">
++                            <h4>📋 Aufgabe 1: Erste Orientierung auf der Wache</h4>
++                            <p><strong>Ziel:</strong> Ankommen und erste Eindrücke sammeln</p>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li>Führung durch die Rettungswache</li>
++                                <li>Kennenlernen des Teams und der Praxisanleiter</li>
++                                <li>Beobachtung eines typischen Arbeitstages</li>
++                                <li>Erste Einblicke in Einsatzabläufe</li>
++                            </ul>
++                            <p><strong>Zeitumfang:</strong> Erste Woche</p>
++                        </div>
++
++                        <div class="praxis-task">
++                            <h4>💭 Aufgabe 2: Reflexion der ersten Eindrücke</h4>
++                            <p><strong>Ziel:</strong> Verarbeitung der neuen Erfahrungen</p>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li>Führen Sie ein Lerntagebuch</li>
++                                <li>Notieren Sie täglich Ihre Beobachtungen und Gedanken</li>
++                                <li>Reflektieren Sie: Was hat mich überrascht? Was bestätigt meine Erwartungen?</li>
++                                <li>Formulieren Sie erste Fragen und Lernbedarfe</li>
++                            </ul>
++                            <p><strong>Zeitumfang:</strong> Täglich 15 Minuten</p>
++                        </div>
++
++                        <div class="praxis-task">
++                            <h4>🗣️ Aufgabe 3: Gespräch mit dem Praxisanleiter</h4>
++                            <p><strong>Ziel:</strong> Klärung von Erwartungen und Zielen</p>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li>Vereinbaren Sie ein Erstgespräch (mind. 30 Min)</li>
++                                <li>Besprechen Sie Ihre Motivation und Erwartungen</li>
++                                <li>Klären Sie organisatorische Fragen</li>
++                                <li>Formulieren Sie gemeinsam erste Lernziele</li>
++                            </ul>
++                            <p><strong>Zeitumfang:</strong> Erste Woche</p>
++                        </div>
++
++                        <div class="praxis-task">
++                            <h4>👀 Aufgabe 4: Beobachtung und Dokumentation</h4>
++                            <p><strong>Ziel:</strong> Strukturierte Beobachtung des Berufsalltags</p>
++                            <ul style="margin-left: 25px; margin-top: 10px;">
++                                <li>Beobachten Sie mindestens 5 verschiedene Einsätze</li>
++                                <li>Notieren Sie: Welche Tätigkeiten führt der NotSan aus?</li>
++                                <li>Achten Sie auf Kommunikation, Zusammenarbeit, Abläufe</li>
++                                <li>Bereiten Sie Fragen für die Rückkehr in die Schule vor</li>
++                            </ul>
++                            <p><strong>Zeitumfang:</strong> Erste 2 Wochen</p>
++                        </div>
++
++                    </div>
++                </div>
++
++                <div class="warning-box">
++                    <strong>⚠️ Wichtige Hinweise für Praxisanleiter:</strong>
++                    <ul style="margin-left: 25px; margin-top: 10px;">
++                        <li>Die Auszubildenden sind in der Orientierungsphase - keine Überforderung!</li>
++                        <li>Geben Sie Zeit zum Ankommen und Beobachten</li>
++                        <li>Noch keine aktive Patientenversorgung - nur Beobachtung</li>
++                        <li>Fördern Sie Fragen und Reflexion</li>
++                        <li>Seien Sie Vorbild für professionelles Verhalten</li>
++                    </ul>
++                </div>
++            </section>
++
++            <!-- LEISTUNGSNACHWEISE -->
++            <section class="section">
++                <h2>✅ Leistungsnachweise und Prüfungsformate</h2>
++                
++                <div class="performance-grid">
++                    <div class="performance-item">
++                        <h4>📝 Schriftliche Reflexion</h4>
++                        <p><strong>Format:</strong> Persönliche Reflexion (2-3 Seiten)</p>
++                        <p><strong>Inhalte:</strong></p>
++                        <ul style="margin-left: 20px;">
++                            <li>Meine Motivation für den Beruf</li>
++                            <li>Erwartungen an die Ausbildung</li>
++                            <li>Erste Eindrücke aus der Praxis</li>
++                            <li>Persönliche Lernziele</li>
++                        </ul>
++                        <p><strong>Bewertung:</strong> 40% der Gesamtnote</p>
++                    </div>
++
++                    <div class="performance-item">
++                        <h4>🎤 Kurzpräsentation</h4>
++                        <p><strong>Format:</strong> Vorstellung (5 Minuten)</p>
++                        <p><strong>Inhalte:</strong></p>
++                        <ul style="margin-left: 20px;">
++                            <li>Persönlicher Hintergrund</li>
++                            <li>Motivation für den Beruf</li>
++                            <li>Erwartungen an die Ausbildung</li>
++                            <li>Ein persönliches Ziel</li>
++                        </ul>
++                        <p><strong>Bewertung:</strong> 20% der Gesamtnote</p>
++                    </div>
++
++                    <div class="performance-item">
++                        <h4>📋 Wissenstest</h4>
++                        <p><strong>Format:</strong> Schriftlicher Test (30 Min)</p>
++                        <p><strong>Inhalte:</strong></p>
++                        <ul style="margin-left: 20px;">
++                            <li>Ausbildungsstruktur</li>
++                            <li>NotSanG-Grundlagen</li>
++                            <li>Modell der vollständigen Handlung</li>
++                            <li>Tätigkeitsfelder NotSan</li>
++                        </ul>
++                        <p><strong>Bewertung:</strong> 30% der Gesamtnote</p>
++                    </div>
++
++                    <div class="performance-item">
++                        <h4>📖 Lerntagebuch</h4>
++                        <p><strong>Format:</strong> Kontinuierliche Dokumentation</p>
++                        <p><strong>Inhalte:</strong></p>
++                        <ul style="margin-left: 20px;">
++                            <li>Tägliche Beobachtungen</li>
++                            <li>Reflexion von Erfahrungen</li>
++                            <li>Formulierung von Fragen</li>
++                            <li>Lernfortschritte</li>
++                        </ul>
++                        <p><strong>Bewertung:</strong> 10% der Gesamtnote</p>
++                    </div>
++                </div>
++            </section>
++
++            <!-- LITERATUR -->
++            <section class="section">
++                <h2>📚 Literatur und Quellenangaben</h2>
++                
++                <div class="literature-list">
++                    <ul>
++                        <li>
++                            <strong>Koch, S., Kuhnke, R. (Hrsg.) (2023):</strong> 
++                            retten – Notfallsanitäter. Stuttgart: Thieme Verlag.
++                            <br><em>→ Kapitel: Berufsbild und Ausbildung</em>
++                        </li>
++                        <li>
++                            <strong>Gesetz über den Beruf der Notfallsanitäterin und des Notfallsanitäters (NotSanG)</strong> 
++                            vom 22. Mai 2013.
++                            <br><em>→ Rechtliche Grundlage der Ausbildung</em>
++                        </li>
++                        <li>
++                            <strong>Ausbildungs- und Prüfungsverordnung (NotSan-APrV)</strong> 
++                            vom 16. Dezember 2013.
++                            <br><em>→ Ausbildungsstruktur und Prüfungsordnung</em>
++                        </li>
++                        <li>
++                            <strong>Deutscher Berufsverband Rettungsdienst e.V. (DBRD):</strong> 
++                            Informationen zum Berufsbild. www.dbrd.de
++                            <br><em>→ Berufsständische Vertretung</em>
++                        </li>
++                    </ul>
++                </div>
++            </section>
++
++            <!-- SPIRALCURRICULUM -->
++            <section class="section">
++                <h2>🔄 Spiralcurrikulare Vernetzung</h2>
++                
++                <div class="info-box">
++                    <h3>📍 Einordnung im Gesamtcurriculum</h3>
++                    <p><strong>LS 1.1 als Einstieg:</strong> Diese Lernsituation ist Ihr Startpunkt. Sie gibt Orientierung für die gesamte Ausbildung.</p>
++                </div>
++
++                <div class="topic-item">
++                    <div class="topic-header">
++                        <div class="topic-title">➡️ Vorbereitung auf folgende LS</div>
++                    </div>
++                    <div class="topic-content">
++                        <ul>
++                            <li><strong>LS 1.2:</strong> Berufsbild im Gesundheitswesen einordnen</li>
++                            <li><strong>LS 1.3:</strong> Professionelle Kommunikation entwickeln</li>
++                            <li><strong>Alle weiteren LS:</strong> Modell der vollständigen Handlung als roter Faden</li>
++                        </ul>
++                    </div>
++                </div>
++            </section>
++
++        </main>
++
++        <!-- FOOTER -->
++        <footer class="footer">
++            <p><strong>Notfallsanitäter-Curriculum ULTIMATE Edition</strong></p>
++            <p>Lernsituation 1.1 | Lernfeld 1 | 16 UE | NotSan-APrV: TB 3 (10 Std) + TB 9 (6 Std)</p>
++            <p style="margin-top: 10px; opacity: 0.8;">Erstellt: November 2025 | Mecklenburg-Vorpommern</p>
++        </footer>
++    </div>
++</body>
++</html>
